@@ -73,12 +73,9 @@ const domainTechStacks = {
   "Cross-platform Development": ["React Native", "Flutter", "Electron"],
   // AI/ML
   "AI/ML": ["Python", "TensorFlow", "PyTorch", "Jupyter"],
-
   // Other Domains
   "Game Development": ["Unity", "Unreal Engine", "Godot", "C#", "C++"],
-
   Blockchain: ["Solidity", "Web3.js", "Ethers.js", "Hardhat", "Truffle"],
-
   DevOps: ["Docker", "Kubernetes", "AWS", "Azure", "Jenkins", "GitHub Actions"],
   "Cloud Computing": ["AWS", "Azure", "Google Cloud", "Docker"],
 };
@@ -94,9 +91,6 @@ const domains = [
   "Cross-platform Development",
   // AI/ML
   "AI/ML",
-  "Data Science",
-  "Natural Language Processing",
-  "Computer Vision",
   // Other Domains
   "Game Development",
   "Blockchain",
