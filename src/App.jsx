@@ -1,20 +1,27 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import HomePage from "./pages/HomePage";
+import IdeaGenerator from "./pages/IdeaGenerator";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import HomePage from "@/pages/HomePage";
 import { Toaster } from "@/components/ui/toaster";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="min-h-screen bg-gradient-to-br from-background to-slate-900/10 dark:to-black/20 text-foreground flex flex-col items-center">
-        <Header />
-        <main className="container mx-auto p-4 flex-grow w-full">
-          <HomePage />
-        </main>
-        <Footer />
-      </div>
+      <Router>
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+          <Navbar />
+          <main className="pt-16">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/prompt" element={<IdeaGenerator />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
       <Toaster />
     </ThemeProvider>
   );
