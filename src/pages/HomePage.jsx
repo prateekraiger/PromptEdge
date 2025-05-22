@@ -45,6 +45,18 @@ const projects = {
       tier: "Beginner",
       link: "https://www.youtube.com/watch?v=SwgBZ0BQNLQ",
     },
+    {
+      name: "Todo List App",
+      description: "A full-stack Todo List application with React and Node.js",
+      tier: "Beginner",
+      link: "https://www.youtube.com/watch?v=HgfB4fV25Bw",
+    },
+    {
+      name: "Weather Dashboard",
+      description: "Weather dashboard using OpenWeather API and JavaScript",
+      tier: "Beginner",
+      link: "https://www.youtube.com/watch?v=WZNG8UomjSI",
+    },
   ],
   intermediate: [
     {
@@ -123,12 +135,6 @@ const projects = {
   ],
   advanced: [
     {
-      name: "Facebook Clone Application",
-      description: "A facebook Clone Application using React JS and Firebase",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=B-kxUMHBxNo",
-    },
-    {
       name: "Netflix Clone - FullStack",
       description: "A Netflix clone application using TMDB API",
       tier: "Advanced",
@@ -141,28 +147,10 @@ const projects = {
       link: "https://www.youtube.com/watch?v=f7T48W0cwXM",
     },
     {
-      name: "COVID-19 Tracker",
-      description: "A COVID-19 Tracker using React JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=cF3pIMJUZxM",
-    },
-    {
       name: "Full-Stack Amazon Clone",
       description: "A Full-Stack AMAZON Clone using REACT JS",
       tier: "Advanced",
       link: "https://www.youtube.com/watch?v=RDV3Z1KCBvo",
-    },
-    {
-      name: "Flipkart Clone Application",
-      description: "A Full-Stack Flipkart Clone using MERN Stack",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=tvdFYmJEaw4",
-    },
-    {
-      name: "Voting Application - MERN",
-      description: "A Voting App using MERN Stack",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=0oziV0FLhXc",
     },
     {
       name: "Travel Log - MERN STACK",
@@ -177,42 +165,6 @@ const projects = {
       link: "https://www.youtube.com/watch?v=YzcnqYNXM90",
     },
     {
-      name: "Messenger Clone - MERN STACK",
-      description: "Messenger Clone App using MERN Stack",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=8GMx8r9zQXg",
-    },
-    {
-      name: "Tik Tok Clone - MERN STACK",
-      description: "Tik Tok Clone App using MERN Stack",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=g8yGxDMyGi",
-    },
-    {
-      name: "Robinhood Clone",
-      description: "Robinhood Clone using React JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=TxggrQ0nHjY",
-    },
-    {
-      name: "LinkedIn Clone",
-      description: "LinkedIn Clone using React JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=QaYts9sPmcY",
-    },
-    {
-      name: "Signal Clone",
-      description: "Signal Clone using React JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=MJzmZ9qmdaE",
-    },
-    {
-      name: "Gmail Clone",
-      description: "Gmail Clone using React JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=b7nrXjS6Dqs",
-    },
-    {
       name: "E-Commerce Application",
       description: "MongoDB, Reactjs, Nextjs",
       tier: "Advanced",
@@ -225,16 +177,69 @@ const projects = {
       link: "https://www.youtube.com/watch?v=GKJBEEXUha0",
     },
     {
-      name: "Invoice Application",
-      description: "Vue 3, Vuex & Firebase",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=vsJtN54aA7w",
-    },
-    {
       name: "Full-Stack Twitter Clone",
       description: "Next JS, Recoil JS, Tailwind CSS, Nextauth & Firebase",
       tier: "Advanced",
       link: "https://www.youtube.com/watch?v=5Wak0iyGCrc",
+    },
+    {
+      name: "Real-time Chat Application",
+      description: "Real-time chat app with WebSocket, React, and Node.js",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=ZwFA3YMfkoc",
+    },
+    {
+      name: "Video Streaming Platform",
+      description:
+        "Netflix-like streaming platform with React, Node.js, and AWS",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=XtMThy8QKqU",
+    },
+    {
+      name: "Social Media Dashboard",
+      description:
+        "Analytics dashboard for social media using React, D3.js, and Node.js",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
+    },
+    {
+      name: "AI-Powered Blog Platform",
+      description: "Blog platform with AI content generation using OpenAI API",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=2FeymQoKvrk",
+    },
+    {
+      name: "Blockchain-based Voting System",
+      description: "Secure voting system using Ethereum smart contracts",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=3_9GKVHxq8Q",
+    },
+    {
+      name: "Real-time Collaborative Editor",
+      description:
+        "Google Docs-like editor with operational transformation using WebSocket and React",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=W4T4Uw1CnuM",
+    },
+    {
+      name: "AI Image Generation Platform",
+      description:
+        "Platform for generating and editing images using Stable Diffusion API",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=1v_3dCJgMKk",
+    },
+    {
+      name: "Cloud Storage Service",
+      description: "Dropbox-like service with AWS S3, React, and Node.js",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=8tL9d0oDKs0",
+    },
+    {
+      name: "Real-time Analytics Dashboard",
+      description:
+        "Real-time data visualization using WebSocket, D3.js, and Node.js",
+      tier: "Advanced",
+      link: "https://www.youtube.com/watch?v=8tL9d0oDKs0",
     },
   ],
 };

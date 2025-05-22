@@ -38,7 +38,7 @@ const toastStore = {
 const toast = {
   add: (props) => {
     const id = generateId();
-    const update = (props) =>
+  const update = (props) =>
       toastStore.setState((state) => ({
         ...state,
         toasts: state.toasts.map((t) => (t.id === id ? { ...t, ...props } : t)),
@@ -77,8 +77,8 @@ const toast = {
     }));
   },
   remove: (toastId) => {
-    toastStore.setState((state) => ({
-      ...state,
+  toastStore.setState((state) => ({
+    ...state,
       toasts: state.toasts.filter((t) => t.id !== toastId),
     }));
   },

@@ -16,7 +16,7 @@ function App() {
           <main className="pt-16">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/prompt" element={<IdeaGenerator />} />
+              <Route path="/idea-generator" element={<IdeaGenerator />} />
             </Routes>
           </main>
           <Footer />
