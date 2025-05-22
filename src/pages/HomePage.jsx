@@ -1,288 +1,116 @@
 import React from "react";
 import ProjectTable from "../components/ProjectTable";
-
-const projects = {
-  beginner: [
-    {
-      name: "Chess Game App",
-      description: "A Two Player Chess game application using JavaScript",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=SS5amIbX0Mo",
-    },
-    {
-      name: "10 User Interfaces",
-      description: "10 User Interfaces using HTML, CSS and JavaScript",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=Rz-rey4Q1bw",
-    },
-    {
-      name: "Audio Book",
-      description: "PDF to Audio Book using Python",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=Flm2YHEFd5A",
-    },
-    {
-      name: "Face Recognition App",
-      description: "Face Recognition + Attendance using OpenCV",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=sz25xxF_AVE",
-    },
-    {
-      name: "Build Brand Page",
-      description: "Design with React",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=W7up-w1QYpw",
-    },
-    {
-      name: "TIC TAC TOE",
-      description: "Tic Tac Toe game using Python",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=BHh654_7Cmw",
-    },
-    {
-      name: "Password Generator",
-      description: "Password Generator App using Python",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=SwgBZ0BQNLQ",
-    },
-    {
-      name: "Todo List App",
-      description: "A full-stack Todo List application with React and Node.js",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=HgfB4fV25Bw",
-    },
-    {
-      name: "Weather Dashboard",
-      description: "Weather dashboard using OpenWeather API and JavaScript",
-      tier: "Beginner",
-      link: "https://www.youtube.com/watch?v=WZNG8UomjSI",
-    },
-  ],
-  intermediate: [
-    {
-      name: "Airbnb Clone Application",
-      description: "A React App for Airbnb Home page Clone",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=IQaCL8_bwA4",
-    },
-    {
-      name: "TMDB Movie App",
-      description: "An interactive Movie Database app using ReactJS",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=ufodJVcpmps",
-    },
-    {
-      name: "Github Jobs App",
-      description: "A GitHub Jobs App using React Hooks and Github API",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=fxY1q4SCB64",
-    },
-    {
-      name: "Weather App",
-      description: "Weather app in React JS using the Open Weather Map API",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=GuA0_Z1llYU",
-    },
-    {
-      name: "Business Card Generator",
-      description: "A Business Card Generator using React JS",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=mGORpgEOsT4",
-    },
-    {
-      name: "React Photo Gallery",
-      description: "Photo Gallery App using React JS and Firebase",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=vUe91uOx7R0",
-    },
-    {
-      name: "Chat-Bot Application",
-      description: "A Chat-Bot which can answer your queries using python",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=FFT4p6me2g0",
-    },
-    {
-      name: "Movie Recommendation Engine",
-      description: "A Movie Recommendation System Using ML",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=XoTwndOgXBM",
-    },
-    {
-      name: "Credit Card Fraud Detection",
-      description: "Credit Card Fraud Detection using ML",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=jCoF1rMs_0s",
-    },
-    {
-      name: "Wildfire Tracker With React",
-      description: "Wild Fire Detection using React, NASA API",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=ontX4zfVqK8",
-    },
-    {
-      name: "Google Drive Clone With React",
-      description: "Google Drive Clone using React, Firebase",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=ljuCH6_jrYE",
-    },
-    {
-      name: "Fitness App",
-      description:
-        "A fitness app that sends you new workouts per email every day using Python and HarperDB",
-      tier: "Intermediate",
-      link: "https://www.youtube.com/watch?v=KMkmA4i2FQc",
-    },
-  ],
-  advanced: [
-    {
-      name: "Netflix Clone - FullStack",
-      description: "A Netflix clone application using TMDB API",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=x_EEwGe-a9o",
-    },
-    {
-      name: "Instagram Clone Application",
-      description: "An Instagram Clone application using React JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=f7T48W0cwXM",
-    },
-    {
-      name: "Full-Stack Amazon Clone",
-      description: "A Full-Stack AMAZON Clone using REACT JS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=RDV3Z1KCBvo",
-    },
-    {
-      name: "Travel Log - MERN STACK",
-      description: "Travel Log App using MERN Stack",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=5pQsl9u_10M",
-    },
-    {
-      name: "Discord Clone - MERN STACK",
-      description: "Discord Clone App using MERN Stack",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=YzcnqYNXM90",
-    },
-    {
-      name: "E-Commerce Application",
-      description: "MongoDB, Reactjs, Nextjs",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=XtciU6BnQdo",
-    },
-    {
-      name: "Full Stack NFT Marketplace",
-      description: "Ethereum, Polygon and Next.js",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=GKJBEEXUha0",
-    },
-    {
-      name: "Full-Stack Twitter Clone",
-      description: "Next JS, Recoil JS, Tailwind CSS, Nextauth & Firebase",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=5Wak0iyGCrc",
-    },
-    {
-      name: "Real-time Chat Application",
-      description: "Real-time chat app with WebSocket, React, and Node.js",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=ZwFA3YMfkoc",
-    },
-    {
-      name: "Video Streaming Platform",
-      description:
-        "Netflix-like streaming platform with React, Node.js, and AWS",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=XtMThy8QKqU",
-    },
-    {
-      name: "Social Media Dashboard",
-      description:
-        "Analytics dashboard for social media using React, D3.js, and Node.js",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=w7ejDZ8SWv8",
-    },
-    {
-      name: "AI-Powered Blog Platform",
-      description: "Blog platform with AI content generation using OpenAI API",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=2FeymQoKvrk",
-    },
-    {
-      name: "Blockchain-based Voting System",
-      description: "Secure voting system using Ethereum smart contracts",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=3_9GKVHxq8Q",
-    },
-    {
-      name: "Real-time Collaborative Editor",
-      description:
-        "Google Docs-like editor with operational transformation using WebSocket and React",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=W4T4Uw1CnuM",
-    },
-    {
-      name: "AI Image Generation Platform",
-      description:
-        "Platform for generating and editing images using Stable Diffusion API",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=1v_3dCJgMKk",
-    },
-    {
-      name: "Cloud Storage Service",
-      description: "Dropbox-like service with AWS S3, React, and Node.js",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=8tL9d0oDKs0",
-    },
-    {
-      name: "Real-time Analytics Dashboard",
-      description:
-        "Real-time data visualization using WebSocket, D3.js, and Node.js",
-      tier: "Advanced",
-      link: "https://www.youtube.com/watch?v=8tL9d0oDKs0",
-    },
-  ],
-};
+import { Link } from "react-router-dom";
+import { projects } from "../constants/projectData";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-background to-secondary pt-20 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center lg:text-left lg:flex lg:items-center lg:justify-between">
+            <div className="lg:max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 relative">
+                <span className="relative inline-block">
+                  Project Ideas
+                  <span className="absolute -bottom-1 left-0 w-full h-1 bg-accent"></span>
+                </span>{" "}
+                for Developers
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8">
+                Explore our curated collection of project ideas for all skill
+                levels
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+                <Link
+                  to="/idea-generator"
+                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                >
+                  Generate Custom Ideas
+                </Link>
+                <a
+                  href="#beginner"
+                  className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg shadow hover:shadow-md transition-all duration-300 font-medium"
+                >
+                  Browse Projects
+                </a>
+              </div>
+            </div>
+            <div className="hidden lg:block lg:w-1/3">
+              <div className="relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-75"></div>
+                <div className="relative bg-card p-6 rounded-lg shadow-xl">
+                  <div className="font-mono text-xs text-muted-foreground">
+                    <p>
+                      <span className="text-primary">const</span>{" "}
+                      <span className="text-yellow-400 font-bold">
+                        projectIdea
+                      </span>{" "}
+                      = () =&gt; {"{"}
+                    </p>
+                    <p>
+                      &nbsp;&nbsp;<span className="text-primary">return</span> (
+                    </p>
+                    <p>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&lt;
+                      <span className="text-accent">div</span>&gt;"Hello,
+                      Developer!"&lt;/<span className="text-accent">div</span>
+                      &gt;
+                    </p>
+                    <p>&nbsp;&nbsp;);</p>
+                    <p>{"}"}</p>
+                    <p>
+                      <span className="text-primary">console</span>.
+                      <span className="text-pink-500 font-bold">log</span>(
+                      <span className="text-accent">projectIdea</span>());
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Project Ideas for Developers
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            Explore our curated collection of project ideas for all skill levels
+          <h2 className="text-3xl font-bold text-foreground">
+            Discover Your First Project
+          </h2>
+          <p className="text-muted-foreground mt-2">
+            Start your coding journey with these beginner-friendly ideas.
           </p>
         </div>
-
         {/* Beginner Projects */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <section id="beginner" className="mb-16">
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
             Beginner Projects
           </h2>
-          <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
+          <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
             <ProjectTable projects={projects.beginner} />
           </div>
         </section>
 
         {/* Intermediate Projects */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
             Intermediate Projects
           </h2>
-          <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
+          <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
             <ProjectTable projects={projects.intermediate} />
           </div>
         </section>
 
         {/* Advanced Projects */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+            <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
             Advanced Projects
           </h2>
-          <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden">
+          <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
             <ProjectTable projects={projects.advanced} />
           </div>
         </section>

@@ -215,7 +215,7 @@ const IdeaForm = ({
               }
             />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="absolute top-full left-0 mt-2 origin-top">
             <SelectGroup>
               <SelectLabel>Tech Stack</SelectLabel>
               {relevantTechStacks.map((tech) => (
