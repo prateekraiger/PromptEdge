@@ -2,7 +2,7 @@ import React from "react";
 import { projects } from "../constants/projectData";
 import SearchBar from "../components/SearchBar";
 
-const DiscoverProjects = () => {
+const DiscoverProj = () => {
   const [search, setSearch] = React.useState("");
 
   const filterProjects = (list) =>
@@ -217,4 +217,4 @@ const DiscoverProjects = () => {
   );
 };
 
-export default DiscoverProjects;
+export default DiscoverProj;

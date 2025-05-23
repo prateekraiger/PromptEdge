@@ -1,43 +1,29 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import HomePage from "./pages/HomePage";
+import Home from "./pages/Home";
+import About from "./pages/About";
 import IdeaGenerator from "./pages/IdeaGenerator";
-import DiscoverProjects from "./pages/DiscoverProjects";
-
-const AppContent = () => {
-  return (
-    <div className="min-h-screen bg-background text-foreground relative">
-      {/* Grid Pattern Background */}
-      <div
-        className="absolute inset-0 -z-10 h-full w-full bg-background"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-            linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px)
-          `,
-          backgroundSize: "6rem 4rem",
-          opacity: "var(--grid-opacity)",
-        }}
-      />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/idea-generator" element={<IdeaGenerator />} />
-        <Route path="/discover" element={<DiscoverProjects />} />
-      </Routes>
-      <Footer />
-    </div>
-  );
-};
+import DiscoverProj from "./pages/DiscoverProj";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <AppContent />
+        <div className="min-h-screen bg-base-100">
+          <Navbar />
+          <main className="pt-16">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/idea-generator" element={<IdeaGenerator />} />
+              <Route path="/discover" element={<DiscoverProj />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
       </Router>
     </ThemeProvider>
   );

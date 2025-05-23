@@ -29,6 +29,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/about" className="btn btn-ghost text-base-content">
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link
                   to="/discover"
                   className="btn btn-ghost text-base-content"
@@ -93,6 +98,15 @@ const Navbar = () => {
                   onClick={() => setMenuOpen(false)}
                 >
                   Idea Generator
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-base-content hover:bg-base-300"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  About
                 </Link>
               </li>
             </ul>
