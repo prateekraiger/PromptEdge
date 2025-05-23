@@ -1,220 +1,249 @@
-export const projects = {
+// Mock project data based on your original structure
+export const mockProjects = {
   beginner: [
     {
-      name: "Chess Game App",
-      description: "A Two Player Chess game application using JavaScript",
+      name: "To-Do List App",
+      description:
+        "Build a simple task management application with add, edit, and delete functionality using local storage",
       tier: "Beginner",
+      estimatedTime: "2-4 hours",
+      popularity: 95,
+      difficulty: 2,
+      tags: ["JavaScript", "HTML", "CSS"],
     },
     {
-      name: "10 User Interfaces",
-      description: "10 User Interfaces using HTML, CSS and JavaScript",
+      name: "Personal Portfolio Website",
+      description:
+        "Create a responsive portfolio website to showcase your projects and skills with modern design",
       tier: "Beginner",
+      estimatedTime: "4-6 hours",
+      popularity: 88,
+      difficulty: 3,
+      tags: ["HTML", "CSS", "JavaScript"],
     },
     {
-      name: "Audio Book",
-      description: "PDF to Audio Book using Python",
+      name: "Calculator App",
+      description:
+        "Develop a functional calculator with basic arithmetic operations and keyboard support",
       tier: "Beginner",
+      estimatedTime: "3-5 hours",
+      popularity: 82,
+      difficulty: 2,
+      tags: ["JavaScript", "HTML", "CSS"],
     },
     {
-      name: "Face Recognition App",
-      description: "Face Recognition + Attendance using OpenCV",
+      name: "Weather Widget",
+      description:
+        "Build a weather display widget using a public weather API with location detection",
       tier: "Beginner",
+      estimatedTime: "4-6 hours",
+      popularity: 78,
+      difficulty: 3,
+      tags: ["JavaScript", "API", "CSS"],
     },
     {
-      name: "Build Brand Page",
-      description: "Design with React",
+      name: "Random Quote Generator",
+      description:
+        "Create an app that displays inspirational quotes with sharing functionality",
       tier: "Beginner",
+      estimatedTime: "2-3 hours",
+      popularity: 75,
+      difficulty: 2,
+      tags: ["JavaScript", "API", "HTML"],
     },
     {
-      name: "TIC TAC TOE",
-      description: "Tic Tac Toe game using Python",
+      name: "Color Palette Generator",
+      description:
+        "Build a tool that generates beautiful color palettes for designers and developers",
       tier: "Beginner",
-    },
-    {
-      name: "Password Generator",
-      description: "Password Generator App using Python",
-      tier: "Beginner",
-    },
-    {
-      name: "Todo List App",
-      description: "A full-stack Todo List application with React and Node.js",
-      tier: "Beginner",
-    },
-    {
-      name: "Weather Dashboard",
-      description: "Weather dashboard using OpenWeather API and JavaScript",
-      tier: "Beginner",
-    },
-    {
-      name: "Simple Calculator",
-      description: "Build a basic calculator with HTML, CSS, and JavaScript.",
-      tier: "Beginner",
+      estimatedTime: "3-4 hours",
+      popularity: 71,
+      difficulty: 2,
+      tags: ["JavaScript", "CSS", "Design"],
     },
     {
       name: "Digital Clock",
       description:
-        "Create a digital clock that displays the current time using JavaScript.",
+        "Create a real-time digital clock with different time zones and themes",
       tier: "Beginner",
+      estimatedTime: "2-3 hours",
+      popularity: 68,
+      difficulty: 1,
+      tags: ["JavaScript", "CSS", "Date/Time"],
     },
     {
-      name: "Quote Generator",
-      description: "Develop a simple application that displays random quotes.",
+      name: "Unit Converter",
+      description:
+        "Develop a multi-unit converter for length, weight, temperature, and currency",
       tier: "Beginner",
+      estimatedTime: "4-5 hours",
+      popularity: 73,
+      difficulty: 3,
+      tags: ["JavaScript", "Math", "API"],
     },
   ],
   intermediate: [
     {
-      name: "Airbnb Clone Application",
-      description: "A React App for Airbnb Home page Clone",
-      tier: "Intermediate",
-    },
-    {
-      name: "TMDB Movie App",
-      description: "An interactive Movie Database app using ReactJS",
-      tier: "Intermediate",
-    },
-    {
-      name: "Github Jobs App",
-      description: "A GitHub Jobs App using React Hooks and Github API",
-      tier: "Intermediate",
-    },
-    {
-      name: "Weather App",
-      description: "Weather app in React JS using the Open Weather Map API",
-      tier: "Intermediate",
-    },
-    {
-      name: "Business Card Generator",
-      description: "A Business Card Generator using React JS",
-      tier: "Intermediate",
-    },
-    {
-      name: "React Photo Gallery",
-      description: "Photo Gallery App using React JS and Firebase",
-      tier: "Intermediate",
-    },
-    {
-      name: "Chat-Bot Application",
-      description: "A Chat-Bot which can answer your queries using python",
-      tier: "Intermediate",
-    },
-    {
-      name: "Movie Recommendation Engine",
-      description: "A Movie Recommendation System Using ML",
-      tier: "Intermediate",
-    },
-    {
-      name: "Credit Card Fraud Detection",
-      description: "Credit Card Fraud Detection using ML",
-      tier: "Intermediate",
-    },
-    {
-      name: "Wildfire Tracker With React",
-      description: "Wild Fire Detection using React, NASA API",
-      tier: "Intermediate",
-    },
-    {
-      name: "Google Drive Clone With React",
-      description: "Google Drive Clone using React, Firebase",
-      tier: "Intermediate",
-    },
-    {
-      name: "Fitness App",
+      name: "E-commerce Dashboard",
       description:
-        "A fitness app that sends you new workouts per email every day using Python and HarperDB",
+        "Create a comprehensive admin dashboard for managing products, orders, and customer analytics",
       tier: "Intermediate",
+      estimatedTime: "20-30 hours",
+      popularity: 92,
+      difficulty: 6,
+      tags: ["React", "Node.js", "Database"],
+    },
+    {
+      name: "Real-time Chat Application",
+      description:
+        "Build a messaging app with real-time communication, user authentication, and chat rooms",
+      tier: "Intermediate",
+      estimatedTime: "15-25 hours",
+      popularity: 87,
+      difficulty: 7,
+      tags: ["React", "Socket.io", "Node.js"],
+    },
+    {
+      name: "Task Management System",
+      description:
+        "Develop a collaborative project management tool with team features and file sharing",
+      tier: "Intermediate",
+      estimatedTime: "25-35 hours",
+      popularity: 79,
+      difficulty: 6,
+      tags: ["React", "Express", "MongoDB"],
+    },
+    {
+      name: "Blog Platform with CMS",
+      description:
+        "Create a full-featured blogging platform with content management and SEO optimization",
+      tier: "Intermediate",
+      estimatedTime: "18-28 hours",
+      popularity: 84,
+      difficulty: 5,
+      tags: ["React", "Node.js", "CMS"],
+    },
+    {
+      name: "Recipe Sharing App",
+      description:
+        "Build a social platform for sharing and discovering recipes with rating system",
+      tier: "Intermediate",
+      estimatedTime: "20-25 hours",
+      popularity: 76,
+      difficulty: 6,
+      tags: ["React", "Express", "Image Upload"],
+    },
+    {
+      name: "Expense Tracker",
+      description:
+        "Develop a personal finance app with budget tracking and spending analytics",
+      tier: "Intermediate",
+      estimatedTime: "15-20 hours",
+      popularity: 81,
+      difficulty: 5,
+      tags: ["React", "Charts", "Local Storage"],
+    },
+    {
+      name: "Music Streaming App",
+      description:
+        "Create a Spotify-like music player with playlists and audio visualization",
+      tier: "Intermediate",
+      estimatedTime: "30-40 hours",
+      popularity: 89,
+      difficulty: 7,
+      tags: ["React", "Audio API", "Database"],
+    },
+    {
+      name: "Job Board Platform",
+      description:
+        "Build a job posting and application platform with search and filtering capabilities",
+      tier: "Intermediate",
+      estimatedTime: "22-30 hours",
+      popularity: 77,
+      difficulty: 6,
+      tags: ["React", "Node.js", "Search"],
     },
   ],
   advanced: [
     {
-      name: "Netflix Clone - FullStack",
-      description: "A Netflix clone application using TMDB API",
+      name: "Social Media Platform",
+      description:
+        "Build a complete social networking application with feeds, messaging, and advanced features",
       tier: "Advanced",
+      estimatedTime: "80-120 hours",
+      popularity: 94,
+      difficulty: 9,
+      tags: ["React", "GraphQL", "Microservices"],
     },
     {
-      name: "Instagram Clone Application",
-      description: "An Instagram Clone application using React JS",
+      name: "AI-Powered Analytics Dashboard",
+      description:
+        "Develop an intelligent data visualization platform with machine learning insights",
       tier: "Advanced",
-    },
-    {
-      name: "Full-Stack Amazon Clone",
-      description: "A Full-Stack AMAZON Clone using REACT JS",
-      tier: "Advanced",
-    },
-    {
-      name: "Travel Log - MERN STACK",
-      description: "Travel Log App using MERN Stack",
-      tier: "Advanced",
-    },
-    {
-      name: "Discord Clone - MERN STACK",
-      description: "Discord Clone App using MERN Stack",
-      tier: "Advanced",
-    },
-    {
-      name: "E-Commerce Application",
-      description: "MongoDB, Reactjs, Nextjs",
-      tier: "Advanced",
-    },
-    {
-      name: "Full Stack NFT Marketplace",
-      description: "Ethereum, Polygon and Next.js",
-      tier: "Advanced",
-    },
-    {
-      name: "Full-Stack Twitter Clone",
-      description: "Next JS, Recoil JS, Tailwind CSS, Nextauth & Firebase",
-      tier: "Advanced",
-    },
-    {
-      name: "Real-time Chat Application",
-      description: "Real-time chat app with WebSocket, React, and Node.js",
-      tier: "Advanced",
+      estimatedTime: "60-90 hours",
+      popularity: 89,
+      difficulty: 9,
+      tags: ["React", "Python", "AI/ML"],
     },
     {
       name: "Video Streaming Platform",
       description:
-        "Netflix-like streaming platform with React, Node.js, and AWS",
+        "Create a Netflix-like streaming service with video processing and CDN integration",
       tier: "Advanced",
+      estimatedTime: "100-150 hours",
+      popularity: 91,
+      difficulty: 10,
+      tags: ["React", "Node.js", "Video Processing"],
     },
     {
-      name: "Social Media Dashboard",
+      name: "Cryptocurrency Exchange",
       description:
-        "Analytics dashboard for social media using React, D3.js, and Node.js",
+        "Build a secure trading platform with real-time market data and wallet integration",
       tier: "Advanced",
+      estimatedTime: "120-180 hours",
+      popularity: 86,
+      difficulty: 10,
+      tags: ["React", "Blockchain", "Security"],
     },
     {
-      name: "AI-Powered Blog Platform",
-      description: "Blog platform with AI content generation using OpenAI API",
-      tier: "Advanced",
-    },
-    {
-      name: "Blockchain-based Voting System",
-      description: "Secure voting system using Ethereum smart contracts",
-      tier: "Advanced",
-    },
-    {
-      name: "Real-time Collaborative Editor",
+      name: "Cloud IDE Platform",
       description:
-        "Google Docs-like editor with operational transformation using WebSocket and React",
+        "Develop a web-based integrated development environment with collaboration features",
       tier: "Advanced",
+      estimatedTime: "90-130 hours",
+      popularity: 88,
+      difficulty: 9,
+      tags: ["React", "WebSocket", "Compiler"],
     },
     {
-      name: "AI Image Generation Platform",
+      name: "IoT Device Management System",
       description:
-        "Platform for generating and editing images using Stable Diffusion API",
+        "Create a comprehensive platform for managing and monitoring IoT devices at scale",
       tier: "Advanced",
+      estimatedTime: "70-100 hours",
+      popularity: 82,
+      difficulty: 8,
+      tags: ["React", "IoT", "Real-time"],
     },
     {
-      name: "Cloud Storage Service",
-      description: "Dropbox-like service with AWS S3, React, and Node.js",
-      tier: "Advanced",
-    },
-    {
-      name: "Real-time Analytics Dashboard",
+      name: "Multi-tenant SaaS Application",
       description:
-        "Real-time data visualization using WebSocket, D3.js, and Node.js",
+        "Build a scalable software-as-a-service platform with tenant isolation and billing",
       tier: "Advanced",
+      estimatedTime: "100-140 hours",
+      popularity: 85,
+      difficulty: 9,
+      tags: ["React", "Microservices", "Multi-tenant"],
+    },
+    {
+      name: "Distributed File Storage System",
+      description:
+        "Develop a cloud storage solution with file synchronization and version control",
+      tier: "Advanced",
+      estimatedTime: "80-110 hours",
+      popularity: 83,
+      difficulty: 9,
+      tags: ["Node.js", "Distributed Systems", "Storage"],
     },
   ],
 };

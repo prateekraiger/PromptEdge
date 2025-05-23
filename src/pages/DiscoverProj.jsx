@@ -1,216 +1,383 @@
-import React from "react";
-import { projects } from "../constants/projectData";
-import SearchBar from "../components/SearchBar";
+import React, { useState, useMemo } from "react";
+import {
+  Search,
+  Star,
+  Clock,
+  Code,
+  Lightbulb,
+  Zap,
+  Trophy,
+  TrendingUp,
+} from "lucide-react";
+import { mockProjects } from "../constants/projectData";
+import logo from "../assets/logo.png";
+
+const SearchBar = ({ onSearch, searchValue }) => {
+  return (
+    <div className="relative max-w-2xl w-full">
+      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <Search className="h-5 w-5 text-slate-400" />
+      </div>
+      <input
+        type="text"
+        value={searchValue}
+        onChange={(e) => onSearch(e.target.value)}
+        placeholder="Search projects by name or description..."
+        className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300"
+      />
+    </div>
+  );
+};
+
+const ProjectTable = ({ projects, tier, tierColor, tierIcon }) => {
+  const getDifficultyStars = (difficulty) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <Star
+        key={i}
+        className={`w-3 h-3 ${
+          i < Math.ceil(difficulty / 2)
+            ? "text-yellow-400 fill-current"
+            : "text-slate-400"
+        }`}
+      />
+    ));
+  };
+
+  const getPopularityColor = (popularity) => {
+    if (popularity >= 90) return "text-green-400";
+    if (popularity >= 80) return "text-yellow-400";
+    if (popularity >= 70) return "text-orange-400";
+    return "text-red-400";
+  };
+
+  return (
+    <section className="mb-16">
+      <div className="flex items-center mb-6">
+        <div
+          className={`flex items-center justify-center w-12 h-12 ${tierColor} rounded-xl mr-4`}
+        >
+          {tierIcon}
+        </div>
+        <div>
+          <h2 className="text-3xl font-bold text-white">{tier} Projects</h2>
+          <p className="text-slate-400">{projects.length} projects available</p>
+        </div>
+      </div>
+
+      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-white/10 bg-white/5">
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 w-16">
+                  #
+                </th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 min-w-[200px]">
+                  Project Name
+                </th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 min-w-[300px]">
+                  Description
+                </th>
+                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-32">
+                  Difficulty
+                </th>
+                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-28">
+                  Time
+                </th>
+                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-28">
+                  Popularity
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.map((project, index) => (
+                <tr
+                  key={index}
+                  className="border-b border-white/5 hover:bg-white/10 transition-all duration-300 group"
+                >
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-sm">
+                      {index + 1}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="font-semibold text-white group-hover:text-purple-300 transition-colors duration-300">
+                      {project.name}
+                    </div>
+                    <div
+                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mt-1 ${tierColor.replace(
+                        "bg-gradient-to-r",
+                        "bg-gradient-to-r"
+                      )} text-white`}
+                    >
+                      {tier}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <div className="flex items-center justify-center space-x-1 mb-1">
+                      {getDifficultyStars(project.difficulty)}
+                    </div>
+                    <div className="text-xs text-slate-400">
+                      {project.difficulty}/10
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <div className="flex items-center justify-center mb-1">
+                      <Clock className="w-4 h-4 text-blue-400 mr-1" />
+                    </div>
+                    <div className="text-sm font-medium text-white">
+                      {project.estimatedTime}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <div className="flex items-center justify-center mb-1">
+                      <TrendingUp
+                        className={`w-4 h-4 mr-1 ${getPopularityColor(
+                          project.popularity
+                        )}`}
+                      />
+                    </div>
+                    <div
+                      className={`text-sm font-medium ${getPopularityColor(
+                        project.popularity
+                      )}`}
+                    >
+                      {project.popularity}%
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const DiscoverProj = () => {
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = useState("");
+  const [selectedTier, setSelectedTier] = useState("all");
+  const [sortBy, setSortBy] = useState("popularity");
 
-  const filterProjects = (list) =>
-    list.filter(
+  const filterProjects = (projects) => {
+    return projects.filter(
       (project) =>
         project.name.toLowerCase().includes(search.toLowerCase()) ||
         project.description.toLowerCase().includes(search.toLowerCase())
     );
-
-  const getDifficultyColor = (tier) => {
-    switch (tier) {
-      case "Beginner":
-        return "bg-success/20 text-success border-success/30";
-      case "Intermediate":
-        return "bg-warning/20 text-warning border-warning/30";
-      case "Advanced":
-        return "bg-error/20 text-error border-error/30";
-      default:
-        return "bg-base-200 text-base-content border-base-300";
-    }
   };
 
-  const filteredBeginner = filterProjects(projects.beginner);
-  const filteredIntermediate = filterProjects(projects.intermediate);
-  const filteredAdvanced = filterProjects(projects.advanced);
+  const sortProjects = (projects) => {
+    return [...projects].sort((a, b) => {
+      switch (sortBy) {
+        case "popularity":
+          return b.popularity - a.popularity;
+        case "difficulty":
+          return a.difficulty - b.difficulty;
+        case "time":
+          return parseInt(a.estimatedTime) - parseInt(b.estimatedTime);
+        case "name":
+          return a.name.localeCompare(b.name);
+        default:
+          return 0;
+      }
+    });
+  };
 
-  const hasResults =
-    filteredBeginner.length > 0 ||
-    filteredIntermediate.length > 0 ||
-    filteredAdvanced.length > 0;
+  const filteredAndSortedProjects = useMemo(() => {
+    const filtered = {
+      beginner: sortProjects(filterProjects(mockProjects.beginner)),
+      intermediate: sortProjects(filterProjects(mockProjects.intermediate)),
+      advanced: sortProjects(filterProjects(mockProjects.advanced)),
+    };
+
+    if (selectedTier === "all") {
+      return filtered;
+    }
+
+    return {
+      beginner: selectedTier === "beginner" ? filtered.beginner : [],
+      intermediate:
+        selectedTier === "intermediate" ? filtered.intermediate : [],
+      advanced: selectedTier === "advanced" ? filtered.advanced : [],
+    };
+  }, [search, selectedTier, sortBy]);
+
+  const totalProjects =
+    filteredAndSortedProjects.beginner.length +
+    filteredAndSortedProjects.intermediate.length +
+    filteredAndSortedProjects.advanced.length;
+
+  const hasResults = totalProjects > 0;
 
   return (
-    <div className="min-h-screen bg-base-100 text-base-content pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-primary mb-4">
-            Discover Projects
-          </h1>
-          <p className="text-xl text-base-content/80">
-            Explore our curated collection of project ideas for all skill levels
-          </p>
-        </div>
+    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-cyan-900/20"></div>
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
+      </div>
 
-        <div className="flex justify-center mb-12">
-          <SearchBar onSearch={setSearch} />
-        </div>
-
-        {!hasResults && search && (
-          <div className="text-center py-12">
-            <p className="text-xl text-base-content/80">
-              No projects found matching "{search}"
+      <div className="relative z-10 pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Hero Section */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-6">
+              <Code className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
+              Discover Projects
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Explore our curated collection of coding projects designed to
+              challenge and inspire developers at every level
             </p>
+            <div className="flex items-center justify-center space-x-8 mt-8">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">
+                  {mockProjects.beginner.length +
+                    mockProjects.intermediate.length +
+                    mockProjects.advanced.length}
+                </div>
+                <div className="text-sm text-gray-400">Total Projects</div>
+              </div>
+              <div className="w-px h-8 bg-gray-700"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">3</div>
+                <div className="text-sm text-gray-400">Skill Levels</div>
+              </div>
+              <div className="w-px h-8 bg-gray-700"></div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-white">24</div>
+                <div className="text-sm text-gray-400">Unique Ideas</div>
+              </div>
+            </div>
           </div>
-        )}
 
-        <div className="grid grid-cols-1 gap-16">
-          {/* Beginner Projects */}
-          {filteredBeginner.length > 0 && (
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-6 flex items-center">
-                <span className="w-2 h-8 bg-success rounded-full mr-3"></span>
-                Beginner Projects
-              </h2>
-              <div className="bg-base-200 shadow-lg rounded-lg overflow-hidden border border-base-300">
-                <div className="overflow-x-auto">
-                  <table className="table w-full">
-                    <thead>
-                      <tr className="bg-base-300">
-                        <th className="w-16 text-center">#</th>
-                        <th>Project Name</th>
-                        <th>Description</th>
-                        <th className="w-32 text-center">Difficulty</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredBeginner.map((project, index) => (
-                        <tr
-                          key={index}
-                          className="hover:bg-base-300/50 transition-colors"
-                        >
-                          <td className="text-center font-medium">
-                            {index + 1}
-                          </td>
-                          <td className="font-medium text-primary">
-                            {project.name}
-                          </td>
-                          <td className="text-base-content/80">
-                            {project.description}
-                          </td>
-                          <td className="text-center">
-                            <span
-                              className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
-                                project.tier
-                              )}`}
-                            >
-                              {project.tier}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
+          {/* Search and Filters */}
+          <div className="flex flex-col lg:flex-row gap-6 mb-12">
+            <div className="flex-1">
+              <SearchBar onSearch={setSearch} searchValue={search} />
+            </div>
+            <div className="flex gap-4">
+              <select
+                value={selectedTier}
+                onChange={(e) => setSelectedTier(e.target.value)}
+                className="px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+              >
+                <option value="all" className="bg-gray-900">
+                  All Levels
+                </option>
+                <option value="beginner" className="bg-gray-900">
+                  Beginner
+                </option>
+                <option value="intermediate" className="bg-gray-900">
+                  Intermediate
+                </option>
+                <option value="advanced" className="bg-gray-900">
+                  Advanced
+                </option>
+              </select>
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
+              >
+                <option value="popularity" className="bg-gray-900">
+                  Most Popular
+                </option>
+                <option value="difficulty" className="bg-gray-900">
+                  Easiest First
+                </option>
+                <option value="time" className="bg-gray-900">
+                  Shortest Time
+                </option>
+                <option value="name" className="bg-gray-900">
+                  Alphabetical
+                </option>
+              </select>
+            </div>
+          </div>
+
+          {/* Results Summary */}
+          {search && (
+            <div className="mb-8 text-center">
+              <p className="text-gray-300">
+                {hasResults ? (
+                  <>
+                    Found{" "}
+                    <span className="font-bold text-white">
+                      {totalProjects}
+                    </span>{" "}
+                    projects matching{" "}
+                    <span className="font-bold text-purple-300">
+                      "{search}"
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    No projects found matching{" "}
+                    <span className="font-bold text-purple-300">
+                      "{search}"
+                    </span>
+                  </>
+                )}
+              </p>
+            </div>
           )}
 
-          {/* Intermediate Projects */}
-          {filteredIntermediate.length > 0 && (
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-6 flex items-center">
-                <span className="w-2 h-8 bg-warning rounded-full mr-3"></span>
-                Intermediate Projects
-              </h2>
-              <div className="bg-base-200 shadow-lg rounded-lg overflow-hidden border border-base-300">
-                <div className="overflow-x-auto">
-                  <table className="table w-full">
-                    <thead>
-                      <tr className="bg-base-300">
-                        <th className="w-16 text-center">#</th>
-                        <th>Project Name</th>
-                        <th>Description</th>
-                        <th className="w-32 text-center">Difficulty</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredIntermediate.map((project, index) => (
-                        <tr
-                          key={index}
-                          className="hover:bg-base-300/50 transition-colors"
-                        >
-                          <td className="text-center font-medium">
-                            {index + 1}
-                          </td>
-                          <td className="font-medium text-primary">
-                            {project.name}
-                          </td>
-                          <td className="text-base-content/80">
-                            {project.description}
-                          </td>
-                          <td className="text-center">
-                            <span
-                              className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
-                                project.tier
-                              )}`}
-                            >
-                              {project.tier}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+          {!hasResults && search && (
+            <div className="text-center py-20">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/5 rounded-full mb-6">
+                <Search className="w-10 h-10 text-gray-400" />
               </div>
-            </section>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                No Projects Found
+              </h3>
+              <p className="text-gray-400 max-w-md mx-auto">
+                Try adjusting your search terms or filters to find the perfect
+                project for you.
+              </p>
+            </div>
           )}
 
-          {/* Advanced Projects */}
-          {filteredAdvanced.length > 0 && (
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-6 flex items-center">
-                <span className="w-2 h-8 bg-error rounded-full mr-3"></span>
-                Advanced Projects
-              </h2>
-              <div className="bg-base-200 shadow-lg rounded-lg overflow-hidden border border-base-300">
-                <div className="overflow-x-auto">
-                  <table className="table w-full">
-                    <thead>
-                      <tr className="bg-base-300">
-                        <th className="w-16 text-center">#</th>
-                        <th>Project Name</th>
-                        <th>Description</th>
-                        <th className="w-32 text-center">Difficulty</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredAdvanced.map((project, index) => (
-                        <tr
-                          key={index}
-                          className="hover:bg-base-300/50 transition-colors"
-                        >
-                          <td className="text-center font-medium">
-                            {index + 1}
-                          </td>
-                          <td className="font-medium text-primary">
-                            {project.name}
-                          </td>
-                          <td className="text-base-content/80">
-                            {project.description}
-                          </td>
-                          <td className="text-center">
-                            <span
-                              className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
-                                project.tier
-                              )}`}
-                            >
-                              {project.tier}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-          )}
+          {/* Project Tables */}
+          <div className="space-y-12">
+            {filteredAndSortedProjects.beginner.length > 0 && (
+              <ProjectTable
+                projects={filteredAndSortedProjects.beginner}
+                tier="Beginner"
+                tierColor="bg-gradient-to-r from-emerald-400 to-teal-500"
+                tierIcon={<Lightbulb className="w-6 h-6 text-white" />}
+              />
+            )}
+
+            {filteredAndSortedProjects.intermediate.length > 0 && (
+              <ProjectTable
+                projects={filteredAndSortedProjects.intermediate}
+                tier="Intermediate"
+                tierColor="bg-gradient-to-r from-amber-400 to-orange-500"
+                tierIcon={<Zap className="w-6 h-6 text-white" />}
+              />
+            )}
+
+            {filteredAndSortedProjects.advanced.length > 0 && (
+              <ProjectTable
+                projects={filteredAndSortedProjects.advanced}
+                tier="Advanced"
+                tierColor="bg-gradient-to-r from-red-400 to-pink-500"
+                tierIcon={<Trophy className="w-6 h-6 text-white" />}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

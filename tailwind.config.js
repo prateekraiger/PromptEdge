@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     container: {
@@ -12,20 +11,6 @@ export default {
     },
     extend: {
       colors: {
-        dracula: {
-          background: "#282a36",
-          currentLine: "#44475a",
-          selection: "#44475a",
-          foreground: "#f8f8f2",
-          comment: "#6272a4",
-          cyan: "#8be9fd",
-          green: "#50fa7b",
-          orange: "#ffb86c",
-          pink: "#ff79c6",
-          purple: "#bd93f9",
-          red: "#ff5555",
-          yellow: "#f1fa8c",
-        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -100,20 +85,6 @@ export default {
           success: "#36d399",
           warning: "#fbbd23",
           error: "#f87272",
-        },
-        dark: {
-          primary: "#bd93f9",
-          secondary: "#50fa7b",
-          accent: "#ff79c6",
-          neutral: "#282a36",
-          "base-100": "#282a36",
-          "base-200": "#44475a",
-          "base-300": "#6272a4",
-          "base-content": "#f8f8f2",
-          info: "#8be9fd",
-          success: "#50fa7b",
-          warning: "#ffb86c",
-          error: "#ff5555",
         },
       },
     ],
