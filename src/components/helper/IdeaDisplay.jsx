@@ -90,10 +90,10 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
             exit="exit"
           >
             {/* <Card className="w-full shadow-2xl border-2 border-primary/30 dark:glassmorphic bg-card/70 backdrop-blur-sm"> */}
-            <div className="card w-full bg-base-200 border border-primary/30">
+            <div className="card w-full bg-base-200 border border-primary/20">
               {/* <CardHeader className="pb-4"> */}
-              <div className="card-body pb-4">
-                <div className="flex justify-between items-start">
+              <div className="card-body">
+                <div className="flex justify-between items-start mb-4">
                   {/* <CardTitle className="text-3xl font-bold gradient-text leading-tight"> */}
                   <h2 className="card-title text-3xl font-bold text-primary leading-tight">
                     {generatedIdea.title}
@@ -109,47 +109,49 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
                     <button
                       onClick={onCopy}
                       className="btn btn-ghost btn-circle text-primary hover:text-accent transition-colors"
+                      aria-label="Copy to clipboard"
                     >
                       <Copy className="h-6 w-6" />
-                      <span className="sr-only">Copy to clipboard</span>
                     </button>
                     <button
                       onClick={handleShare}
                       className="btn btn-ghost btn-circle text-primary hover:text-accent transition-colors"
+                      aria-label="Share project idea"
                     >
                       <Share2 className="h-6 w-6" />
-                      <span className="sr-only">Share project idea</span>
                     </button>
                   </div>
                 </div>
                 {/* <CardDescription className="text-lg text-muted-foreground pt-1"> */}
-                <p className="text-lg text-base-content/80 pt-1">
+                <p className="text-lg text-base-content/80 mb-6">
                   {generatedIdea.description}
                 </p>
                 {/* </CardHeader> */}
               </div>
               {/* <CardContent className="space-y-5"> */}
-              <div className="card-body space-y-5 pt-0">
+              <div className="card-body space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold text-primary mb-2">
-                    Key Features:
+                  <h3 className="text-xl font-semibold text-primary mb-3">
+                    Key Features
                   </h3>
-                  <ul className="list-disc list-inside space-y-1 text-base-content">
+                  <ul className="space-y-2">
                     {generatedIdea.keyFeatures.map((feature, index) => (
                       <motion.li
                         key={index}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
+                        className="flex items-start gap-2 text-base-content"
                       >
-                        {feature}
+                        <span className="text-primary mt-1">•</span>
+                        <span>{feature}</span>
                       </motion.li>
                     ))}
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-primary mb-2">
-                    Suggested Tech Stack:
+                  <h3 className="text-xl font-semibold text-primary mb-3">
+                    Suggested Tech Stack
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {generatedIdea.suggestedTechStack.map((tech, index) => (
@@ -170,24 +172,24 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-primary mb-2">
-                    Estimated Difficulty:
+                    Estimated Difficulty
                   </h3>
-                  <p
-                    className={`text-lg font-medium ${
+                  <div
+                    className={`badge badge-lg ${
                       generatedIdea.estimatedDifficulty === "Beginner"
-                        ? "text-success"
+                        ? "badge-success"
                         : generatedIdea.estimatedDifficulty === "Intermediate"
-                        ? "text-warning"
-                        : "text-error"
+                        ? "badge-warning"
+                        : "badge-error"
                     }`}
                   >
                     {generatedIdea.estimatedDifficulty}
-                  </p>
+                  </div>
                 </div>
               </div>
               {/* </CardContent> */}
               {/* <CardFooter className="pt-6"> */}
-              <div className="card-actions justify-end p-6 pt-0">
+              <div className="card-actions justify-end mt-6">
                 {/* <Button
                   onClick={onRegenerate}
                   disabled={isLoading}

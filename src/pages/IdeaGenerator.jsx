@@ -87,18 +87,19 @@ const IdeaGenerator = () => {
 
   return (
     <div className="min-h-screen bg-base-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-primary mb-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-12 mt-20">
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 font-montserrat tracking-tight">
             Generate Custom Project Ideas
           </h1>
-          <p className="text-xl text-base-content">
-            Get personalized project ideas based on your preferences
+          <p className="text-xl text-base-content/80 max-w-2xl mx-auto font-montserrat">
+            Get personalized project ideas based on your preferences and skill
+            level
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
-          <div className="w-full lg:w-1/2 bg-base-200 p-6 rounded-lg shadow-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          <div className="bg-base-200 p-6 rounded-lg shadow-lg border border-primary/20">
             <IdeaForm
               skillLevel={skillLevel}
               setSkillLevel={setSkillLevel}
@@ -111,7 +112,7 @@ const IdeaGenerator = () => {
               onGenerate={handleGenerateIdea}
             />
           </div>
-          <div className="w-full lg:w-1/2 bg-base-200 p-6 rounded-lg shadow-lg">
+          <div className="bg-base-200 p-6 rounded-lg shadow-lg border border-primary/20">
             <IdeaDisplay
               generatedIdea={generatedIdea}
               isLoading={isLoading}

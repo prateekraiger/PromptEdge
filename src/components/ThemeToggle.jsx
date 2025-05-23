@@ -1,20 +1,20 @@
 import React from "react";
-import { useTheme } from "./ThemeProvider";
-import { Sun, Moon } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
+import { Moon, Sun } from "lucide-react";
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <button
-      onClick={() => setTheme(theme === "dracula" ? "light" : "dracula")}
+      onClick={toggleTheme}
       className="btn btn-ghost btn-circle"
       aria-label="Toggle theme"
     >
-      {theme === "dracula" ? (
-        <Sun className="h-5 w-5 text-primary" />
+      {theme === "dark" ? (
+        <Sun className="h-5 w-5 text-base-content" />
       ) : (
-        <Moon className="h-5 w-5 text-primary" />
+        <Moon className="h-5 w-5 text-base-content" />
       )}
     </button>
   );

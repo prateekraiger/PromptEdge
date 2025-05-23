@@ -35,13 +35,13 @@ const DiscoverProjects = () => {
     filteredAdvanced.length > 0;
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-base-100 text-base-content pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-foreground mb-4">
+          <h1 className="text-4xl font-bold text-primary mb-4">
             Discover Projects
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-base-content/80">
             Explore our curated collection of project ideas for all skill levels
           </p>
         </div>
@@ -52,7 +52,7 @@ const DiscoverProjects = () => {
 
         {!hasResults && search && (
           <div className="text-center py-12">
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-base-content/80">
               No projects found matching "{search}"
             </p>
           </div>
@@ -62,15 +62,15 @@ const DiscoverProjects = () => {
           {/* Beginner Projects */}
           {filteredBeginner.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-primary mb-6 flex items-center">
                 <span className="w-2 h-8 bg-success rounded-full mr-3"></span>
                 Beginner Projects
               </h2>
-              <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
+              <div className="bg-base-200 shadow-lg rounded-lg overflow-hidden border border-base-300">
                 <div className="overflow-x-auto">
                   <table className="table w-full">
                     <thead>
-                      <tr className="bg-base-200">
+                      <tr className="bg-base-300">
                         <th className="w-16 text-center">#</th>
                         <th>Project Name</th>
                         <th>Description</th>
@@ -81,13 +81,15 @@ const DiscoverProjects = () => {
                       {filteredBeginner.map((project, index) => (
                         <tr
                           key={index}
-                          className="hover:bg-base-200/50 transition-colors"
+                          className="hover:bg-base-300/50 transition-colors"
                         >
                           <td className="text-center font-medium">
                             {index + 1}
                           </td>
-                          <td className="font-medium">{project.name}</td>
-                          <td className="text-muted-foreground">
+                          <td className="font-medium text-primary">
+                            {project.name}
+                          </td>
+                          <td className="text-base-content/80">
                             {project.description}
                           </td>
                           <td className="text-center">
@@ -111,15 +113,15 @@ const DiscoverProjects = () => {
           {/* Intermediate Projects */}
           {filteredIntermediate.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-primary mb-6 flex items-center">
                 <span className="w-2 h-8 bg-warning rounded-full mr-3"></span>
                 Intermediate Projects
               </h2>
-              <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
+              <div className="bg-base-200 shadow-lg rounded-lg overflow-hidden border border-base-300">
                 <div className="overflow-x-auto">
                   <table className="table w-full">
                     <thead>
-                      <tr className="bg-base-200">
+                      <tr className="bg-base-300">
                         <th className="w-16 text-center">#</th>
                         <th>Project Name</th>
                         <th>Description</th>
@@ -130,13 +132,15 @@ const DiscoverProjects = () => {
                       {filteredIntermediate.map((project, index) => (
                         <tr
                           key={index}
-                          className="hover:bg-base-200/50 transition-colors"
+                          className="hover:bg-base-300/50 transition-colors"
                         >
                           <td className="text-center font-medium">
                             {index + 1}
                           </td>
-                          <td className="font-medium">{project.name}</td>
-                          <td className="text-muted-foreground">
+                          <td className="font-medium text-primary">
+                            {project.name}
+                          </td>
+                          <td className="text-base-content/80">
                             {project.description}
                           </td>
                           <td className="text-center">
@@ -160,15 +164,15 @@ const DiscoverProjects = () => {
           {/* Advanced Projects */}
           {filteredAdvanced.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+              <h2 className="text-2xl font-bold text-primary mb-6 flex items-center">
                 <span className="w-2 h-8 bg-error rounded-full mr-3"></span>
                 Advanced Projects
               </h2>
-              <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
+              <div className="bg-base-200 shadow-lg rounded-lg overflow-hidden border border-base-300">
                 <div className="overflow-x-auto">
                   <table className="table w-full">
                     <thead>
-                      <tr className="bg-base-200">
+                      <tr className="bg-base-300">
                         <th className="w-16 text-center">#</th>
                         <th>Project Name</th>
                         <th>Description</th>
@@ -179,13 +183,15 @@ const DiscoverProjects = () => {
                       {filteredAdvanced.map((project, index) => (
                         <tr
                           key={index}
-                          className="hover:bg-base-200/50 transition-colors"
+                          className="hover:bg-base-300/50 transition-colors"
                         >
                           <td className="text-center font-medium">
                             {index + 1}
                           </td>
-                          <td className="font-medium">{project.name}</td>
-                          <td className="text-muted-foreground">
+                          <td className="font-medium text-primary">
+                            {project.name}
+                          </td>
+                          <td className="text-base-content/80">
                             {project.description}
                           </td>
                           <td className="text-center">

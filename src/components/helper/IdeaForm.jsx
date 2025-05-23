@@ -153,86 +153,83 @@ const IdeaForm = ({
         </div>
       )}
 
-      <div className="space-y-2">
-        <label
-          htmlFor="skill-level"
-          className="label flex items-center text-lg text-base-content"
-        >
-          <Users className="mr-2 h-5 w-5 text-accent" />
-          <span className="label-text">Skill Level</span>
-        </label>
-        <select
-          id="skill-level"
-          className="select select-bordered w-full text-base-content bg-base-200 border-primary/30 focus:border-primary"
-          value={skillLevel}
-          onChange={(e) => setSkillLevel(e.target.value)}
-        >
-          <option value="" disabled>
-            Select your skill level
-          </option>
-          {skillLevels.map((level) => (
-            <option key={level} value={level}>
-              {level}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="space-y-6">
+        <div className="space-y-3">
+          <label className="label flex items-center text-lg text-base-content">
+            <Users className="mr-2 h-5 w-5 text-accent" />
+            <span className="label-text">Skill Level</span>
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {skillLevels.map((level) => (
+              <button
+                key={level}
+                onClick={() => setSkillLevel(level)}
+                className={`btn flex-1 min-w-[120px] transition-all duration-200 ${
+                  skillLevel === level
+                    ? "btn-primary text-primary-content shadow-lg scale-105"
+                    : "btn-outline hover:bg-primary/10"
+                }`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+        </div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="domain"
-          className="label flex items-center text-lg text-base-content"
-        >
-          <Lightbulb className="mr-2 h-5 w-5 text-accent" />
-          <span className="label-text">Domain / Interest</span>
-        </label>
-        <select
-          id="domain"
-          className="select select-bordered w-full text-base-content bg-base-200 border-primary/30 focus:border-primary"
-          value={domain}
-          onChange={(e) => setDomain(e.target.value)}
-        >
-          <option value="" disabled>
-            Select your domain of interest
-          </option>
-          {domains.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className="space-y-3">
+          <label className="label flex items-center text-lg text-base-content">
+            <Lightbulb className="mr-2 h-5 w-5 text-accent" />
+            <span className="label-text">Domain / Interest</span>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {domains.map((item) => (
+              <button
+                key={item}
+                onClick={() => setDomain(item)}
+                className={`btn transition-all duration-200 ${
+                  domain === item
+                    ? "btn-primary text-primary-content shadow-lg scale-105"
+                    : "btn-outline hover:bg-primary/10"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="tech-stack"
-          className="label flex items-center text-lg text-base-content"
-        >
-          <Code className="mr-2 h-5 w-5 text-accent" />
-          <span className="label-text">Tech Stack</span>
-        </label>
-        <select
-          id="tech-stack"
-          className="select select-bordered w-full text-base-content bg-base-200 border-primary/30 focus:border-primary"
-          value={techStack}
-          onChange={(e) => setTechStack(e.target.value)}
-          disabled={!domain}
-        >
-          <option value="" disabled>
-            {domain ? "Select your tech stack" : "Select a domain first"}
-          </option>
-          {relevantTechStacks.map((tech) => (
-            <option key={tech} value={tech}>
-              {tech}
-            </option>
-          ))}
-        </select>
+        <div className="space-y-3">
+          <label className="label flex items-center text-lg text-base-content">
+            <Code className="mr-2 h-5 w-5 text-accent" />
+            <span className="label-text">Tech Stack</span>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {relevantTechStacks.map((tech) => (
+              <button
+                key={tech}
+                onClick={() => setTechStack(tech)}
+                disabled={!domain}
+                className={`btn transition-all duration-200 ${
+                  techStack === tech
+                    ? "btn-primary text-primary-content shadow-lg scale-105"
+                    : "btn-outline hover:bg-primary/10"
+                } ${!domain ? "opacity-50 cursor-not-allowed" : ""}`}
+              >
+                {tech}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <button
         onClick={onGenerate}
         disabled={isLoading || !skillLevel || !techStack || !domain}
-        className="btn btn-primary w-full mt-6 text-lg"
+        className={`btn btn-primary w-full mt-6 text-lg transition-all duration-200 ${
+          !isLoading && skillLevel && techStack && domain
+            ? "shadow-lg hover:scale-105"
+            : ""
+        }`}
       >
         {isLoading ? (
           <RefreshCw className="h-5 w-5 animate-spin" />
