@@ -1,16 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { projects } from "../constants/projectData";
-import SearchBar from "../components/SearchBar";
+import { Coffee, Sparkles, Rocket, Code2 } from "lucide-react";
 
 const HomePage = () => {
-  const [search, setSearch] = React.useState("");
-  const filterProjects = (list) =>
-    list.filter(
-      (project) =>
-        project.name.toLowerCase().includes(search.toLowerCase()) ||
-        project.description.toLowerCase().includes(search.toLowerCase())
-    );
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -27,26 +19,24 @@ const HomePage = () => {
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
                 Explore our curated collection of project ideas for all skill
-                levels
+                levels. From beginner-friendly apps to advanced full-stack
+                projects.
               </p>
               <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
                 <Link
                   to="/idea-generator"
-                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
+                  className="px-6 py-3 bg-primary text-primary-foreground rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium flex items-center gap-2"
                 >
+                  <Sparkles className="h-5 w-5" />
                   Generate Custom Ideas
                 </Link>
-                <button
-                  onClick={() => {
-                    const beginnerSection = document.getElementById("beginner");
-                    if (beginnerSection) {
-                      beginnerSection.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }}
-                  className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg shadow hover:shadow-md transition-all duration-300 font-medium"
+                <Link
+                  to="/discover"
+                  className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg shadow hover:shadow-md transition-all duration-300 font-medium flex items-center gap-2"
                 >
+                  <Rocket className="h-5 w-5" />
                   Browse Projects
-                </button>
+                </Link>
               </div>
             </div>
             <div className="hidden lg:block lg:w-1/3">
@@ -84,121 +74,85 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+      {/* Features Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-foreground">
-            Discover Your First Project
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            Why Choose PromptEdge?
           </h2>
-          <p className="text-muted-foreground mt-2">
-            Start your coding journey with these beginner-friendly ideas.
+          <p className="text-xl text-muted-foreground">
+            Your ultimate companion for project inspiration and development
           </p>
         </div>
-        <div className="flex justify-center mb-16">
-          <SearchBar onSearch={setSearch} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Feature 1 */}
+          <div className="bg-card p-6 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-all duration-300">
+            <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4">
+              <Sparkles className="h-6 w-6 text-primary" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">
+              AI-Powered Ideas
+            </h3>
+            <p className="text-muted-foreground">
+              Get personalized project ideas based on your skill level and
+              preferences
+            </p>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="bg-card p-6 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-all duration-300">
+            <div className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center mb-4">
+              <Code2 className="h-6 w-6 text-accent" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">
+              Curated Projects
+            </h3>
+            <p className="text-muted-foreground">
+              Explore our handpicked collection of projects for all skill levels
+            </p>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="bg-card p-6 rounded-lg shadow-lg border border-border/50 hover:shadow-xl transition-all duration-300">
+            <div className="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center mb-4">
+              <Rocket className="h-6 w-6 text-secondary" />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">
+              Skill Growth
+            </h3>
+            <p className="text-muted-foreground">
+              Progress from beginner to advanced with our structured project
+              collection
+            </p>
+          </div>
         </div>
-        {/* Project Sections Aligned */}
-        <div className="grid grid-cols-1 gap-16">
-          {/* Beginner Projects */}
-          <section id="beginner">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
-              Beginner Projects
-            </h2>
-            <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* rows */}
-                    {filterProjects(projects.beginner).map((project, index) => (
-                      <tr key={index} className="hover:bg-base-300">
-                        <th>{index + 1}</th>
-                        <td>{project.name}</td>
-                        <td>{project.description}</td>
-                        <td>{project.tier}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-          {/* Intermediate Projects */}
-          <section id="intermediate">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
-              Intermediate Projects
-            </h2>
-            <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* rows */}
-                    {filterProjects(projects.intermediate).map(
-                      (project, index) => (
-                        <tr key={index} className="hover:bg-base-300">
-                          <th>{index + 1}</th>
-                          <td>{project.name}</td>
-                          <td>{project.description}</td>
-                          <td>{project.tier}</td>
-                        </tr>
-                      )
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-          {/* Advanced Projects */}
-          <section id="advanced">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
-              Advanced Projects
-            </h2>
-            <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-              <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* rows */}
-                    {filterProjects(projects.advanced).map((project, index) => (
-                      <tr key={index} className="hover:bg-base-300">
-                        <th>{index + 1}</th>
-                        <td>{project.name}</td>
-                        <td>{project.description}</td>
-                        <td>{project.tier}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+
+        {/* CTA Section */}
+        <div className="mt-20 text-center">
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            Ready to Start Building?
+          </h2>
+          <p className="text-xl text-muted-foreground mb-8">
+            Choose your path and begin your coding journey today
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              to="/idea-generator"
+              className="px-8 py-4 bg-primary text-primary-foreground rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium flex items-center gap-2"
+            >
+              <Sparkles className="h-5 w-5" />
+              Generate Custom Ideas
+            </Link>
+            <Link
+              to="/discover"
+              className="px-8 py-4 bg-secondary text-secondary-foreground rounded-lg shadow hover:shadow-md transition-all duration-300 font-medium flex items-center gap-2"
+            >
+              <Rocket className="h-5 w-5" />
+              Explore Projects
+            </Link>
+          </div>
         </div>
       </div>
     </div>

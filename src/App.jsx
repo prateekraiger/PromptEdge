@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import IdeaGenerator from "./pages/IdeaGenerator";
+import DiscoverProjects from "./pages/DiscoverProjects";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 import Footer from "@/components/Footer";
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/idea-generator" element={<IdeaGenerator />} />
+              <Route path="/discover" element={<DiscoverProjects />} />
             </Routes>
           </main>
           <Footer />

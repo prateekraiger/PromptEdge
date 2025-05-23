@@ -30,6 +30,14 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
+                  to="/discover"
+                  className="btn btn-ghost text-base-content"
+                >
+                  Discover
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/idea-generator"
                   className="btn btn-ghost text-base-content"
                 >
@@ -74,6 +82,15 @@ const Navbar = () => {
                   onClick={() => setMenuOpen(false)}
                 >
                   Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/discover"
+                  className="text-base-content hover:bg-base-300"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Discover
                 </Link>
               </li>
               <li>
