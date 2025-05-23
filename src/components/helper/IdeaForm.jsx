@@ -27,6 +27,7 @@ const skillLevels = ["Beginner", "Intermediate", "Advanced"];
 const domainTechStacks = {
   // Web Development
   "Web Development": [
+    "HTML & CSS",
     "React",
     "Next.js",
     "Vue.js",
@@ -47,6 +48,7 @@ const domainTechStacks = {
     "MongoDB",
   ],
   "Frontend Development": [
+    "HTML & CSS",
     "React",
     "Next.js",
     "Vue.js",

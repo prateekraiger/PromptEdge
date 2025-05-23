@@ -1,8 +1,8 @@
 const API_KEY = import.meta.env.VITE_AI_API_KEY;
-const API_URL = "https://api.chatanywhere.tech/v1/chat/completions";
+const API_URL = import.meta.env.VITE_AI_API_URL;
 
-if (!API_KEY || !API_URL) {
-  console.error("Missing required environment variables: VITE_AI_API_KEY");
+if (!API_KEY) {
+  console.error("Missing required environment variable: VITE_AI_API_KEY");
 }
 
 // Add some variety to the prompts
@@ -35,9 +35,11 @@ export const generateProjectIdea = async (skillLevel, techStack, domain) => {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${API_KEY}`,
+        "HTTP-Referer": window.location.origin,
+        "X-Title": "Project Idea Generator",
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "openai/gpt-3.5-turbo",
         messages: [
           {
             role: "system",

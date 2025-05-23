@@ -37,12 +37,17 @@ const HomePage = () => {
                 >
                   Generate Custom Ideas
                 </Link>
-                <a
-                  href="#beginner"
+                <button
+                  onClick={() => {
+                    const beginnerSection = document.getElementById("beginner");
+                    if (beginnerSection) {
+                      beginnerSection.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
                   className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg shadow hover:shadow-md transition-all duration-300 font-medium"
                 >
                   Browse Projects
-                </a>
+                </button>
               </div>
             </div>
             <div className="hidden lg:block lg:w-1/3">
@@ -81,7 +86,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-foreground">
             Discover Your First Project
           </h2>
@@ -89,39 +94,51 @@ const HomePage = () => {
             Start your coding journey with these beginner-friendly ideas.
           </p>
         </div>
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-16">
           <SearchBar onSearch={setSearch} />
         </div>
-        {/* Beginner Projects */}
-        <section id="beginner" className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-            <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
-            Beginner Projects
-          </h2>
-          <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-            <ProjectTable projects={filterProjects(projects.beginner)} />
-          </div>
-        </section>
-        {/* Intermediate Projects */}
-        <section id="intermediate" className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-            <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
-            Intermediate Projects
-          </h2>
-          <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-            <ProjectTable projects={filterProjects(projects.intermediate)} />
-          </div>
-        </section>
-        {/* Advanced Projects */}
-        <section id="advanced" className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-            <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
-            Advanced Projects
-          </h2>
-          <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-            <ProjectTable projects={filterProjects(projects.advanced)} />
-          </div>
-        </section>
+        {/* Project Sections Aligned */}
+        <div className="grid grid-cols-1 gap-16">
+          {/* Beginner Projects */}
+          <section id="beginner">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+              <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
+              Beginner Projects
+            </h2>
+            <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
+              <ProjectTable
+                projects={filterProjects(projects.beginner)}
+                difficultyMargin={true}
+              />
+            </div>
+          </section>
+          {/* Intermediate Projects */}
+          <section id="intermediate">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+              <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
+              Intermediate Projects
+            </h2>
+            <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
+              <ProjectTable
+                projects={filterProjects(projects.intermediate)}
+                difficultyMargin={true}
+              />
+            </div>
+          </section>
+          {/* Advanced Projects */}
+          <section id="advanced">
+            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+              <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
+              Advanced Projects
+            </h2>
+            <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
+              <ProjectTable
+                projects={filterProjects(projects.advanced)}
+                difficultyMargin={true}
+              />
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
