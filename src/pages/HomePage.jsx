@@ -1,5 +1,4 @@
 import React from "react";
-import ProjectTable from "../components/ProjectTable";
 import { Link } from "react-router-dom";
 import { projects } from "../constants/projectData";
 import SearchBar from "../components/SearchBar";
@@ -106,10 +105,30 @@ const HomePage = () => {
               Beginner Projects
             </h2>
             <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-              <ProjectTable
-                projects={filterProjects(projects.beginner)}
-                difficultyMargin={true}
-              />
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Difficulty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* rows */}
+                    {filterProjects(projects.beginner).map((project, index) => (
+                      <tr key={index} className="hover:bg-base-300">
+                        <th>{index + 1}</th>
+                        <td>{project.name}</td>
+                        <td>{project.description}</td>
+                        <td>{project.tier}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
           {/* Intermediate Projects */}
@@ -119,10 +138,32 @@ const HomePage = () => {
               Intermediate Projects
             </h2>
             <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-              <ProjectTable
-                projects={filterProjects(projects.intermediate)}
-                difficultyMargin={true}
-              />
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Difficulty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* rows */}
+                    {filterProjects(projects.intermediate).map(
+                      (project, index) => (
+                        <tr key={index} className="hover:bg-base-300">
+                          <th>{index + 1}</th>
+                          <td>{project.name}</td>
+                          <td>{project.description}</td>
+                          <td>{project.tier}</td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
           {/* Advanced Projects */}
@@ -132,10 +173,30 @@ const HomePage = () => {
               Advanced Projects
             </h2>
             <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-              <ProjectTable
-                projects={filterProjects(projects.advanced)}
-                difficultyMargin={true}
-              />
+              <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Difficulty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* rows */}
+                    {filterProjects(projects.advanced).map((project, index) => (
+                      <tr key={index} className="hover:bg-base-300">
+                        <th>{index + 1}</th>
+                        <td>{project.name}</td>
+                        <td>{project.description}</td>
+                        <td>{project.tier}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </section>
         </div>

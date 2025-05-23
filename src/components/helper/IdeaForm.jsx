@@ -1,7 +1,12 @@
 import React, { useMemo } from "react";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import {
+{
+  /* import { Button } from "@/components/ui/button"; */
+}
+{
+  /* import { Label } from "@/components/ui/label"; */
+}
+{
+  /* import {
   Select,
   SelectContent,
   SelectGroup,
@@ -9,8 +14,11 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+} from "@/components/ui/select"; */
+}
+{
+  /* import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"; */
+}
 import {
   AlertCircle,
   Settings,
@@ -126,127 +134,115 @@ const IdeaForm = ({
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: 0.2 }}
-      className="lg:w-1/3 w-full space-y-6 p-6 bg-card/50 dark:glassmorphic shadow-2xl rounded-xl border border-primary/20"
+      className="w-full space-y-6"
     >
       <div className="flex items-center space-x-3 mb-6">
         <Settings className="h-8 w-8 text-primary" />
-        <h2 className="text-3xl font-semibold gradient-text">
+        <h2 className="text-3xl font-semibold text-primary">
           Customize Your Idea
         </h2>
       </div>
 
       {error && (
-        <Alert variant="destructive" className="mb-4">
+        <div className="alert alert-error bg-error/20 text-error-content mb-4">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+          <div>
+            <h3 className="font-bold">Error</h3>
+            <div className="text-xs">{error}</div>
+          </div>
+        </div>
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="skill-level" className="flex items-center text-lg">
+        <label
+          htmlFor="skill-level"
+          className="label flex items-center text-lg text-base-content"
+        >
           <Users className="mr-2 h-5 w-5 text-accent" />
-          Skill Level
-        </Label>
-        <Select onValueChange={setSkillLevel} value={skillLevel}>
-          <SelectTrigger
-            id="skill-level"
-            className="w-full text-base py-6 border-primary/30 focus:ring-primary"
-          >
-            <SelectValue placeholder="Select your skill level" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Skill Level</SelectLabel>
-              {skillLevels.map((level) => (
-                <SelectItem
-                  key={level}
-                  value={level}
-                  className="text-base py-2"
-                >
-                  {level}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+          <span className="label-text">Skill Level</span>
+        </label>
+        <select
+          id="skill-level"
+          className="select select-bordered w-full text-base-content bg-base-200 border-primary/30 focus:border-primary"
+          value={skillLevel}
+          onChange={(e) => setSkillLevel(e.target.value)}
+        >
+          <option value="" disabled>
+            Select your skill level
+          </option>
+          {skillLevels.map((level) => (
+            <option key={level} value={level}>
+              {level}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="domain" className="flex items-center text-lg">
+        <label
+          htmlFor="domain"
+          className="label flex items-center text-lg text-base-content"
+        >
           <Lightbulb className="mr-2 h-5 w-5 text-accent" />
-          Domain / Interest
-        </Label>
-        <Select onValueChange={setDomain} value={domain}>
-          <SelectTrigger
-            id="domain"
-            className="w-full text-base py-6 border-primary/30 focus:ring-primary"
-          >
-            <SelectValue placeholder="Select your domain of interest" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Domain</SelectLabel>
-              {domains.map((item) => (
-                <SelectItem key={item} value={item} className="text-base py-2">
-                  {item}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+          <span className="label-text">Domain / Interest</span>
+        </label>
+        <select
+          id="domain"
+          className="select select-bordered w-full text-base-content bg-base-200 border-primary/30 focus:border-primary"
+          value={domain}
+          onChange={(e) => setDomain(e.target.value)}
+        >
+          <option value="" disabled>
+            Select your domain of interest
+          </option>
+          {domains.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="tech-stack" className="flex items-center text-lg">
+        <label
+          htmlFor="tech-stack"
+          className="label flex items-center text-lg text-base-content"
+        >
           <Code className="mr-2 h-5 w-5 text-accent" />
-          Preferred Tech Stack
-        </Label>
-        <Select
-          onValueChange={setTechStack}
+          <span className="label-text">Tech Stack</span>
+        </label>
+        <select
+          id="tech-stack"
+          className="select select-bordered w-full text-base-content bg-base-200 border-primary/30 focus:border-primary"
           value={techStack}
+          onChange={(e) => setTechStack(e.target.value)}
           disabled={!domain}
         >
-          <SelectTrigger
-            id="tech-stack"
-            className="w-full text-base py-6 border-primary/30 focus:ring-primary"
-          >
-            <SelectValue
-              placeholder={
-                domain ? "Select preferred tech stack" : "Select domain first"
-              }
-            />
-          </SelectTrigger>
-          <SelectContent className="absolute top-full left-0 mt-2 origin-top">
-            <SelectGroup>
-              <SelectLabel>Tech Stack</SelectLabel>
-              {relevantTechStacks.map((tech) => (
-                <SelectItem key={tech} value={tech} className="text-base py-2">
-                  {tech}
-                </SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+          <option value="" disabled>
+            {domain ? "Select your tech stack" : "Select a domain first"}
+          </option>
+          {relevantTechStacks.map((tech) => (
+            <option key={tech} value={tech}>
+              {tech}
+            </option>
+          ))}
+        </select>
       </div>
 
-      <Button
+      <button
         onClick={onGenerate}
-        disabled={isLoading || !domain || !techStack}
-        className="w-full text-lg py-7 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-primary-foreground transition-all duration-300 ease-in-out transform hover:scale-105 neumorphic-btn"
+        disabled={isLoading || !skillLevel || !techStack || !domain}
+        className="btn btn-primary w-full mt-6 text-lg"
       >
         {isLoading ? (
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-          >
-            <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-          </motion.div>
+          <RefreshCw className="h-5 w-5 animate-spin" />
         ) : (
-          <Zap className="mr-2 h-5 w-5" />
+          <>
+            <Zap className="h-5 w-5 mr-2" />
+            Generate Idea
+          </>
         )}
-        {isLoading ? "Generating..." : "Generate Idea"}
-      </Button>
+      </button>
     </motion.div>
   );
 };

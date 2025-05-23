@@ -1,56 +1,53 @@
 import React from "react";
 
 const ProjectCard = ({ name, description, tier, link }) => {
-  const getTierColor = (tier) => {
+  const getTierBadgeClass = (tier) => {
     switch (tier) {
       case "1-Beginner":
-        return "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100";
+        return "badge-success";
       case "2-Intermediate":
-        return "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100";
+        return "badge-info";
       case "3-Advanced":
-        return "bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-100";
+        return "badge-primary";
       default:
-        return "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-100";
+        return "badge-neutral";
     }
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {name}
-          </h3>
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-medium ${getTierColor(
-              tier
-            )}`}
-          >
-            {tier}
-          </span>
+    <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+      <div className="card-body">
+        <div className="card-actions justify-between items-center mb-2">
+          <h2 className="card-title text-lg">{name}</h2>
+          <div className={`badge badge-outline ${getTierBadgeClass(tier)}`}>
+            {tier.substring(2)}
+          </div>
         </div>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
-        >
-          Learn More
-          <svg
-            className="ml-2 w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <p className="mb-4 text-base-content/80">{description}</p>
+        <div className="card-actions justify-end">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary btn-sm"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-            />
-          </svg>
-        </a>
+            Learn More
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-4 h-4 ml-1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   );

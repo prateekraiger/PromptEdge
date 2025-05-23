@@ -1,14 +1,14 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Copy, RefreshCw, Lightbulb } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
+import { Copy, RefreshCw, Lightbulb, Share2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
@@ -28,8 +28,58 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
     },
   };
 
+  const handleShare = async () => {
+    if (!generatedIdea) return;
+
+    const shareData = {
+      title: generatedIdea.title,
+      text: `${
+        generatedIdea.description
+      }\n\nKey Features: ${generatedIdea.keyFeatures.join(
+        ", "
+      )}\n\nTech Stack: ${generatedIdea.suggestedTechStack.join(
+        ", "
+      )}\n\nDifficulty: ${generatedIdea.estimatedDifficulty}`,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        // Show success toast
+        window.dispatchEvent(
+          new CustomEvent("show-toast", {
+            detail: {
+              type: "success",
+              message: "Project idea shared successfully!",
+            },
+          })
+        );
+      } else {
+        // Fallback for browsers that don't support Web Share API
+        await navigator.clipboard.writeText(shareData.text);
+        window.dispatchEvent(
+          new CustomEvent("show-toast", {
+            detail: {
+              type: "info",
+              message: "Share text copied to clipboard!",
+            },
+          })
+        );
+      }
+    } catch (error) {
+      window.dispatchEvent(
+        new CustomEvent("show-toast", {
+          detail: {
+            type: "error",
+            message: "Failed to share project idea",
+          },
+        })
+      );
+    }
+  };
+
   return (
-    <div className="lg:w-2/3 w-full">
+    <div className="w-full">
       <AnimatePresence mode="wait">
         {generatedIdea ? (
           <motion.div
@@ -39,32 +89,52 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
             animate="visible"
             exit="exit"
           >
-            <Card className="w-full shadow-2xl border-2 border-primary/30 dark:glassmorphic bg-card/70 backdrop-blur-sm">
-              <CardHeader className="pb-4">
+            {/* <Card className="w-full shadow-2xl border-2 border-primary/30 dark:glassmorphic bg-card/70 backdrop-blur-sm"> */}
+            <div className="card w-full bg-base-200 border border-primary/30">
+              {/* <CardHeader className="pb-4"> */}
+              <div className="card-body pb-4">
                 <div className="flex justify-between items-start">
-                  <CardTitle className="text-3xl font-bold gradient-text leading-tight">
+                  {/* <CardTitle className="text-3xl font-bold gradient-text leading-tight"> */}
+                  <h2 className="card-title text-3xl font-bold text-primary leading-tight">
                     {generatedIdea.title}
-                  </CardTitle>
-                  <Button
+                  </h2>
+                  {/* </CardTitle> */}
+                  {/* <Button
                     variant="ghost"
                     size="icon"
                     onClick={onCopy}
                     className="text-primary hover:text-accent transition-colors"
-                  >
-                    <Copy className="h-6 w-6" />
-                    <span className="sr-only">Copy to clipboard</span>
-                  </Button>
+                  > */}
+                  <div className="flex gap-2">
+                    <button
+                      onClick={onCopy}
+                      className="btn btn-ghost btn-circle text-primary hover:text-accent transition-colors"
+                    >
+                      <Copy className="h-6 w-6" />
+                      <span className="sr-only">Copy to clipboard</span>
+                    </button>
+                    <button
+                      onClick={handleShare}
+                      className="btn btn-ghost btn-circle text-primary hover:text-accent transition-colors"
+                    >
+                      <Share2 className="h-6 w-6" />
+                      <span className="sr-only">Share project idea</span>
+                    </button>
+                  </div>
                 </div>
-                <CardDescription className="text-lg text-muted-foreground pt-1">
+                {/* <CardDescription className="text-lg text-muted-foreground pt-1"> */}
+                <p className="text-lg text-base-content/80 pt-1">
                   {generatedIdea.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-5">
+                </p>
+                {/* </CardHeader> */}
+              </div>
+              {/* <CardContent className="space-y-5"> */}
+              <div className="card-body space-y-5 pt-0">
                 <div>
                   <h3 className="text-xl font-semibold text-primary mb-2">
                     Key Features:
                   </h3>
-                  <ul className="list-disc list-inside space-y-1 text-base text-foreground/90">
+                  <ul className="list-disc list-inside space-y-1 text-base-content">
                     {generatedIdea.keyFeatures.map((feature, index) => (
                       <motion.li
                         key={index}
@@ -85,7 +155,7 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
                     {generatedIdea.suggestedTechStack.map((tech, index) => (
                       <motion.span
                         key={index}
-                        className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm shadow-md"
+                        className="px-4 py-1.5 bg-gradient-to-r from-primary/20 to-accent/20 text-primary hover:from-primary/30 hover:to-accent/30 border border-primary/30 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-default"
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{
@@ -105,43 +175,43 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
                   <p
                     className={`text-lg font-medium ${
                       generatedIdea.estimatedDifficulty === "Beginner"
-                        ? "text-green-500"
+                        ? "text-success"
                         : generatedIdea.estimatedDifficulty === "Intermediate"
-                        ? "text-yellow-500"
-                        : "text-red-500"
+                        ? "text-warning"
+                        : "text-error"
                     }`}
                   >
                     {generatedIdea.estimatedDifficulty}
                   </p>
                 </div>
-              </CardContent>
-              <CardFooter className="pt-6">
-                <Button
+              </div>
+              {/* </CardContent> */}
+              {/* <CardFooter className="pt-6"> */}
+              <div className="card-actions justify-end p-6 pt-0">
+                {/* <Button
                   onClick={onRegenerate}
                   disabled={isLoading}
                   variant="outline"
                   className="w-full text-md py-6 border-accent text-accent hover:bg-accent/10 hover:text-accent transition-all duration-300 transform hover:scale-105"
+                > */}
+                <button
+                  onClick={onRegenerate}
+                  disabled={isLoading}
+                  className="btn btn-outline btn-accent w-full"
                 >
                   {isLoading ? (
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 1,
-                        ease: "linear",
-                      }}
-                    >
-                      <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-                    </motion.div>
+                    <RefreshCw className="h-5 w-5 animate-spin" />
                   ) : (
-                    <RefreshCw className="mr-2 h-5 w-5" />
+                    <RefreshCw className="h-5 w-5 mr-2" />
                   )}
                   {isLoading
                     ? "Regenerating..."
                     : "Regenerate with Same Settings"}
-                </Button>
-              </CardFooter>
-            </Card>
+                </button>
+                {/* </CardFooter> */}
+              </div>
+              {/* </Card> */}
+            </div>
           </motion.div>
         ) : (
           <motion.div
@@ -150,13 +220,13 @@ const IdeaDisplay = ({ generatedIdea, isLoading, onRegenerate, onCopy }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="flex flex-col items-center justify-center h-[calc(100vh-250px)] text-center p-8 border-2 border-dashed border-primary/30 rounded-xl bg-card/30 dark:glassmorphic"
+            className="flex flex-col items-center justify-center h-[calc(100vh-250px)] text-center p-8 border-2 border-dashed border-primary/30 rounded-xl bg-base-200"
           >
             <Lightbulb className="h-20 w-20 text-primary/70 mb-6 animate-pulse" />
-            <h2 className="text-3xl font-semibold text-foreground/80 mb-3">
+            <h2 className="text-3xl font-semibold text-primary mb-3">
               Let's Spark Some Creativity!
             </h2>
-            <p className="text-lg text-muted-foreground max-w-md">
+            <p className="text-lg text-base-content/80 max-w-md">
               Fill in your preferences on the left, and we'll generate a unique
               software project idea tailored just for you.
             </p>
