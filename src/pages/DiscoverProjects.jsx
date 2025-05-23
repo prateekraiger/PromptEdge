@@ -25,6 +25,15 @@ const DiscoverProjects = () => {
     }
   };
 
+  const filteredBeginner = filterProjects(projects.beginner);
+  const filteredIntermediate = filterProjects(projects.intermediate);
+  const filteredAdvanced = filterProjects(projects.advanced);
+
+  const hasResults =
+    filteredBeginner.length > 0 ||
+    filteredIntermediate.length > 0 ||
+    filteredAdvanced.length > 0;
+
   return (
     <div className="min-h-screen bg-background pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -41,72 +50,35 @@ const DiscoverProjects = () => {
           <SearchBar onSearch={setSearch} />
         </div>
 
+        {!hasResults && search && (
+          <div className="text-center py-12">
+            <p className="text-xl text-muted-foreground">
+              No projects found matching "{search}"
+            </p>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 gap-16">
           {/* Beginner Projects */}
-          <section>
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <span className="w-2 h-8 bg-success rounded-full mr-3"></span>
-              Beginner Projects
-            </h2>
-            <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
-              <div className="overflow-x-auto">
-                <table className="table w-full">
-                  <thead>
-                    <tr className="bg-base-200">
-                      <th className="w-16 text-center">#</th>
-                      <th>Project Name</th>
-                      <th>Description</th>
-                      <th className="w-32 text-center">Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filterProjects(projects.beginner).map((project, index) => (
-                      <tr
-                        key={index}
-                        className="hover:bg-base-200/50 transition-colors"
-                      >
-                        <td className="text-center font-medium">{index + 1}</td>
-                        <td className="font-medium">{project.name}</td>
-                        <td className="text-muted-foreground">
-                          {project.description}
-                        </td>
-                        <td className="text-center">
-                          <span
-                            className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
-                              project.tier
-                            )}`}
-                          >
-                            {project.tier}
-                          </span>
-                        </td>
+          {filteredBeginner.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <span className="w-2 h-8 bg-success rounded-full mr-3"></span>
+                Beginner Projects
+              </h2>
+              <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
+                    <thead>
+                      <tr className="bg-base-200">
+                        <th className="w-16 text-center">#</th>
+                        <th>Project Name</th>
+                        <th>Description</th>
+                        <th className="w-32 text-center">Difficulty</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
-          {/* Intermediate Projects */}
-          <section>
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <span className="w-2 h-8 bg-warning rounded-full mr-3"></span>
-              Intermediate Projects
-            </h2>
-            <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
-              <div className="overflow-x-auto">
-                <table className="table w-full">
-                  <thead>
-                    <tr className="bg-base-200">
-                      <th className="w-16 text-center">#</th>
-                      <th>Project Name</th>
-                      <th>Description</th>
-                      <th className="w-32 text-center">Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filterProjects(projects.intermediate).map(
-                      (project, index) => (
+                    </thead>
+                    <tbody>
+                      {filteredBeginner.map((project, index) => (
                         <tr
                           key={index}
                           className="hover:bg-base-200/50 transition-colors"
@@ -128,58 +100,111 @@ const DiscoverProjects = () => {
                             </span>
                           </td>
                         </tr>
-                      )
-                    )}
-                  </tbody>
-                </table>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
+
+          {/* Intermediate Projects */}
+          {filteredIntermediate.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <span className="w-2 h-8 bg-warning rounded-full mr-3"></span>
+                Intermediate Projects
+              </h2>
+              <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
+                    <thead>
+                      <tr className="bg-base-200">
+                        <th className="w-16 text-center">#</th>
+                        <th>Project Name</th>
+                        <th>Description</th>
+                        <th className="w-32 text-center">Difficulty</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredIntermediate.map((project, index) => (
+                        <tr
+                          key={index}
+                          className="hover:bg-base-200/50 transition-colors"
+                        >
+                          <td className="text-center font-medium">
+                            {index + 1}
+                          </td>
+                          <td className="font-medium">{project.name}</td>
+                          <td className="text-muted-foreground">
+                            {project.description}
+                          </td>
+                          <td className="text-center">
+                            <span
+                              className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
+                                project.tier
+                              )}`}
+                            >
+                              {project.tier}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Advanced Projects */}
-          <section>
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <span className="w-2 h-8 bg-error rounded-full mr-3"></span>
-              Advanced Projects
-            </h2>
-            <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
-              <div className="overflow-x-auto">
-                <table className="table w-full">
-                  <thead>
-                    <tr className="bg-base-200">
-                      <th className="w-16 text-center">#</th>
-                      <th>Project Name</th>
-                      <th>Description</th>
-                      <th className="w-32 text-center">Difficulty</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filterProjects(projects.advanced).map((project, index) => (
-                      <tr
-                        key={index}
-                        className="hover:bg-base-200/50 transition-colors"
-                      >
-                        <td className="text-center font-medium">{index + 1}</td>
-                        <td className="font-medium">{project.name}</td>
-                        <td className="text-muted-foreground">
-                          {project.description}
-                        </td>
-                        <td className="text-center">
-                          <span
-                            className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
-                              project.tier
-                            )}`}
-                          >
-                            {project.tier}
-                          </span>
-                        </td>
+          {filteredAdvanced.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <span className="w-2 h-8 bg-error rounded-full mr-3"></span>
+                Advanced Projects
+              </h2>
+              <div className="bg-card shadow-lg rounded-lg overflow-hidden border border-border/50">
+                <div className="overflow-x-auto">
+                  <table className="table w-full">
+                    <thead>
+                      <tr className="bg-base-200">
+                        <th className="w-16 text-center">#</th>
+                        <th>Project Name</th>
+                        <th>Description</th>
+                        <th className="w-32 text-center">Difficulty</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {filteredAdvanced.map((project, index) => (
+                        <tr
+                          key={index}
+                          className="hover:bg-base-200/50 transition-colors"
+                        >
+                          <td className="text-center font-medium">
+                            {index + 1}
+                          </td>
+                          <td className="font-medium">{project.name}</td>
+                          <td className="text-muted-foreground">
+                            {project.description}
+                          </td>
+                          <td className="text-center">
+                            <span
+                              className={`inline-block px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(
+                                project.tier
+                              )}`}
+                            >
+                              {project.tier}
+                            </span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
         </div>
       </div>
     </div>

@@ -45,13 +45,6 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <div className="form-control">
-              <input
-                type="text"
-                placeholder="Search"
-                className="input input-bordered w-24 md:w-auto bg-base-200 text-base-content"
-              />
-            </div>
             <ThemeToggle />
           </div>
 
@@ -101,13 +94,6 @@ const Navbar = () => {
                 >
                   Idea Generator
                 </Link>
-              </li>
-              <li className="mt-2">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="input input-bordered w-full bg-base-100 text-base-content"
-                />
               </li>
             </ul>
           </div>
