@@ -20,8 +20,8 @@ const socialLinks = [
 const Footer = () => {
   return (
     <footer className="w-full border-t border-border bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/60">
-      <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:py-8">
-        <p className="text-center text-xs sm:text-sm font-light md:text-left text-muted-foreground hover:text-foreground transition-colors duration-500 ease-in-out">
+      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 px-4 py-6 sm:py-8">
+        <p className="text-center text-xs sm:text-sm font-light md:text-left text-muted-foreground hover:text-foreground transition-colors duration-500 ease-in-out w-full sm:w-auto">
           <span className="flex items-center justify-center sm:justify-start gap-1">
             PromptEdge built by{" "}
             <a
@@ -35,7 +35,7 @@ const Footer = () => {
           </span>
         </p>
 
-        <div className="flex justify-center gap-4 sm:gap-6 md:justify-start">
+        <div className="flex justify-center gap-4 sm:gap-6 md:justify-start w-full sm:w-auto order-3 sm:order-none">
           {socialLinks.map((link, index) => (
             <a
               key={index}
@@ -51,7 +51,7 @@ const Footer = () => {
 
         <a
           href="#privacy-policy"
-          className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors duration-500 ease-in-out"
+          className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors duration-500 ease-in-out w-full sm:w-auto text-center"
         >
           Privacy Policy
         </a>

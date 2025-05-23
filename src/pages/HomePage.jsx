@@ -2,8 +2,16 @@ import React from "react";
 import ProjectTable from "../components/ProjectTable";
 import { Link } from "react-router-dom";
 import { projects } from "../constants/projectData";
+import SearchBar from "../components/SearchBar";
 
 const HomePage = () => {
+  const [search, setSearch] = React.useState("");
+  const filterProjects = (list) =>
+    list.filter(
+      (project) =>
+        project.name.toLowerCase().includes(search.toLowerCase()) ||
+        project.description.toLowerCase().includes(search.toLowerCase())
+    );
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -72,7 +80,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground">
@@ -82,6 +89,9 @@ const HomePage = () => {
             Start your coding journey with these beginner-friendly ideas.
           </p>
         </div>
+        <div className="flex justify-center mb-12">
+          <SearchBar onSearch={setSearch} />
+        </div>
         {/* Beginner Projects */}
         <section id="beginner" className="mb-16">
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
@@ -89,29 +99,27 @@ const HomePage = () => {
             Beginner Projects
           </h2>
           <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-            <ProjectTable projects={projects.beginner} />
+            <ProjectTable projects={filterProjects(projects.beginner)} />
           </div>
         </section>
-
         {/* Intermediate Projects */}
-        <section className="mb-16">
+        <section id="intermediate" className="mb-16">
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
             <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
             Intermediate Projects
           </h2>
           <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-            <ProjectTable projects={projects.intermediate} />
+            <ProjectTable projects={filterProjects(projects.intermediate)} />
           </div>
         </section>
-
         {/* Advanced Projects */}
-        <section className="mb-16">
+        <section id="advanced" className="mb-16">
           <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
             <span className="w-2 h-8 bg-primary rounded-full mr-3"></span>
             Advanced Projects
           </h2>
           <div className="bg-card shadow-md rounded-lg overflow-hidden border border-border/50">
-            <ProjectTable projects={projects.advanced} />
+            <ProjectTable projects={filterProjects(projects.advanced)} />
           </div>
         </section>
       </div>
