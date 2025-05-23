@@ -4,17 +4,33 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: 'Montserrat', sans-serif;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  font-feature-settings: "rlig" 1, "calt" 1;
-}
-
 @layer base {
   body {
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-white text-black;
+  }
+
+  .dark body {
+    @apply bg-dracula-background text-dracula-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-black dark:text-dracula-yellow;
+  }
+
+  a {
+    @apply text-blue-600 dark:text-dracula-cyan hover:underline;
+  }
+
+  code {
+    @apply bg-gray-100 dark:bg-dracula-currentLine text-red-500 dark:text-dracula-green px-1 py-0.5 rounded;
+  }
+
+  ::selection {
+    @apply bg-gray-300 dark:bg-dracula-selection;
   }
 }
