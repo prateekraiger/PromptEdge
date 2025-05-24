@@ -211,15 +211,17 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                       <label className="block text-sm font-semibold text-gray-300 mb-3">
                         Skill Level
                       </label>
-                      <div className="grid grid-cols-3 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 w-full">
                         {skillLevels.map((level) => (
                           <button
                             key={level}
-                            className={`px-4 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 ${
-                              skillLevel === level
-                                ? "bg-purple-500 text-white"
-                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                            }`}
+                            className={`px-4 py-2 rounded-lg text-sm sm:text-base font-medium transition-all duration-200 shadow-md border-2 focus:outline-none focus:ring-2 focus:ring-purple-400
+                              ${
+                                skillLevel === level
+                                  ? "bg-gradient-to-r from-purple-600 to-pink-500 text-white border-purple-500 scale-105"
+                                  : "bg-white/10 text-white border-white/20 hover:bg-purple-500/30 hover:text-white"
+                              }
+                            `}
                             onClick={() => setSkillLevel(level)}
                           >
                             {level}

@@ -5,7 +5,7 @@ if (!API_KEY) {
   console.error("Missing required environment variable: VITE_AI_API_KEY");
 }
 
-// Add some variety to the prompts
+
 const getRandomPrompt = (skillLevel, techStack, domain) => {
   const prompts = [
     `Generate a unique ${skillLevel} level project idea using ${techStack} for ${domain}. Make it practical and achievable.`,

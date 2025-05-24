@@ -42,13 +42,6 @@ const ProjectTable = ({ projects, tier, tierColor, tierIcon }) => {
     ));
   };
 
-  const getPopularityColor = (popularity) => {
-    if (popularity >= 90) return "text-green-400";
-    if (popularity >= 80) return "text-yellow-400";
-    if (popularity >= 70) return "text-orange-400";
-    return "text-red-400";
-  };
-
   return (
     <section className="mb-16">
       <div className="flex items-center mb-6">
@@ -83,8 +76,8 @@ const ProjectTable = ({ projects, tier, tierColor, tierIcon }) => {
                 <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-28">
                   Time
                 </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-28">
-                  Popularity
+                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-40">
+                  Tags
                 </th>
               </tr>
             </thead>
@@ -134,19 +127,19 @@ const ProjectTable = ({ projects, tier, tierColor, tierIcon }) => {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <TrendingUp
-                        className={`w-4 h-4 mr-1 ${getPopularityColor(
-                          project.popularity
-                        )}`}
-                      />
-                    </div>
-                    <div
-                      className={`text-sm font-medium ${getPopularityColor(
-                        project.popularity
-                      )}`}
-                    >
-                      {project.popularity}%
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {project.tags && project.tags.length > 0 ? (
+                        project.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+                          >
+                            {tag}
+                          </span>
+                        ))
+                      ) : (
+                        <span className="text-slate-400 text-xs">No tags</span>
+                      )}
                     </div>
                   </td>
                 </tr>
