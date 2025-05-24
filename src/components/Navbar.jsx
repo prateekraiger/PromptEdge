@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import logo from "../assets/logo.png"; // Use the new blue logo
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,14 +50,31 @@ const Navbar = () => {
               </a>
             ))}
 
-            {/* CTA Button */}
+            {/* Auth Button */}
             <div className="ml-6">
-              <a
-                href="/get-started"
-                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-purple-700 hover:to-pink-700"
-              >
-                Get Started
-              </a>
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+                    <User className="w-5 h-5" />
+                    <span>Get Started</span>
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton
+                  afterSignOutUrl="/"
+                  appearance={{
+                    elements: {
+                      avatarBox: "w-10 h-10 rounded-lg",
+                      userButtonPopoverCard:
+                        "bg-gray-800 border border-white/10",
+                      userButtonPopoverActionButton:
+                        "text-gray-300 hover:text-white hover:bg-gray-700/50",
+                      userButtonPopoverFooter: "border-t border-white/10",
+                    },
+                  }}
+                />
+              </SignedIn>
             </div>
           </div>
 
@@ -86,13 +109,31 @@ const Navbar = () => {
               </a>
             ))}
             <div className="pt-4 border-t border-white/10">
-              <a
-                href="/get-started"
-                className="block px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg text-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Get Started
-              </a>
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+                    <User className="w-5 h-5" />
+                    <span>Get Started</span>
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <div className="flex justify-center mt-3">
+                  <UserButton
+                    afterSignOutUrl="/"
+                    appearance={{
+                      elements: {
+                        avatarBox: "w-10 h-10 rounded-lg",
+                        userButtonPopoverCard:
+                          "bg-gray-800 border border-white/10",
+                        userButtonPopoverActionButton:
+                          "text-gray-300 hover:text-white hover:bg-gray-700/50",
+                        userButtonPopoverFooter: "border-t border-white/10",
+                      },
+                    }}
+                  />
+                </div>
+              </SignedIn>
             </div>
           </div>
         </div>
