@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   if (loading) {
-    return <Loader size={40} color="#ff0" speed={3} />;
+    return <Loader size={80} color="#4f46e5" speed={2} />;
   }
 
   return (
