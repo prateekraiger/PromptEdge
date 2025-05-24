@@ -15,14 +15,14 @@ const SearchBar = ({ onSearch, searchValue }) => {
   return (
     <div className="relative max-w-2xl w-full">
       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-        <Search className="h-5 w-5 text-slate-400" />
+        <Search className="h-5 w-5 " />
       </div>
       <input
         type="text"
         value={searchValue}
         onChange={(e) => onSearch(e.target.value)}
         placeholder="Search projects by name or description..."
-        className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300"
+        className="w-full pl-12 pr-4 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300"
       />
     </div>
   );
@@ -162,7 +162,7 @@ const ProjectTable = ({ projects, tier, tierColor, tierIcon }) => {
 const DiscoverProj = () => {
   const [search, setSearch] = useState("");
   const [selectedTier, setSelectedTier] = useState("all");
-  const [sortBy, setSortBy] = useState("popularity");
+  const [sortBy, setSortBy] = useState("difficulty");
 
   const filterProjects = (projects) => {
     return projects.filter(
@@ -175,14 +175,10 @@ const DiscoverProj = () => {
   const sortProjects = (projects) => {
     return [...projects].sort((a, b) => {
       switch (sortBy) {
-        case "popularity":
-          return b.popularity - a.popularity;
         case "difficulty":
-          return a.difficulty - b.difficulty;
+          return b.difficulty - a.difficulty;
         case "time":
-          return parseInt(a.estimatedTime) - parseInt(b.estimatedTime);
-        case "name":
-          return a.name.localeCompare(b.name);
+          return b.estimatedTime - a.estimatedTime;
         default:
           return 0;
       }
@@ -265,17 +261,11 @@ const DiscoverProj = () => {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
               >
-                <option value="popularity" className="bg-gray-900">
-                  Most Popular
-                </option>
                 <option value="difficulty" className="bg-gray-900">
-                  Easiest First
+                  Difficulty
                 </option>
                 <option value="time" className="bg-gray-900">
-                  Shortest Time
-                </option>
-                <option value="name" className="bg-gray-900">
-                  Alphabetical
+                  Time Required
                 </option>
               </select>
             </div>
