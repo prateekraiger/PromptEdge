@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const AnimatedBackground = () => {
+const AnimatedBg = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
@@ -33,4 +33,4 @@ const AnimatedBackground = () => {
   );
 };
 
-export default AnimatedBackground;
+export default AnimatedBg;

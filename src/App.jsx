@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import AnimatedBackground from "./components/AnimatedBackground";
+import AnimatedBg from "./components/AnimatedBg";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import IdeaGenerator from "./pages/IdeaGenerator";
@@ -25,7 +25,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-base-100 relative overflow-hidden">
-        <AnimatedBackground />
+        <AnimatedBg />
         <Navbar />
         <main className="pt-16 relative z-10">
           <Routes>
