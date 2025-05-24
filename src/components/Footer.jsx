@@ -37,8 +37,12 @@ const Footer = () => {
           {/* Branding & Copyright */}
           <div className="flex flex-col items-center sm:items-start gap-2">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg">
-                <img src={logo} alt="Logo" className="w-4 h-4 object-contain" />
+              <div className="p-2.5 bg-white rounded-lg">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="w-14 h-14 object-contain"
+                />
               </div>
               <span className="text-lg font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
                 PromptEdge

@@ -26,7 +26,25 @@
     @apply bg-gray-100 text-red-500 px-1 py-0.5 rounded;
   }
 
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800/50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gradient-to-b from-purple-600 to-pink-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gradient-to-b from-purple-500 to-pink-500;
+  }
+
+  /* Selection color */
   ::selection {
-    @apply bg-gray-300;
+    @apply bg-purple-500/30 text-white;
   }
 }

@@ -10,7 +10,6 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { mockProjects } from "../constants/projectData";
-import logo from "../assets/logo.png";
 
 const SearchBar = ({ onSearch, searchValue }) => {
   return (
@@ -217,20 +216,16 @@ const DiscoverProj = () => {
   const hasResults = totalProjects > 0;
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-cyan-900/20"></div>
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-2xl animate-pulse delay-1000"></div>
-      </div>
-
+    <div className="min-h-screen text-white overflow-hidden">
       <div className="relative z-10 pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-6">
-              <Code className="w-8 h-8 text-white" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-2xl mb-6 transform hover:scale-105 transition-all duration-300">
+              <div className="flex items-center justify-center gap-2">
+                <Code className="w-8 h-8 text-white" />
+                <Trophy className="w-8 h-8 text-white" />
+              </div>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
               Discover Projects

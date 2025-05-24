@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.png"; // Use the new blue logo
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,8 +23,8 @@ const Navbar = () => {
             href="/"
             className="flex items-center group transition-all duration-300 hover:scale-105"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:shadow-xl transition-all duration-300">
-              <img src={logo} alt="Logo" className="w-6 h-6 object-contain" />
+            <div className="w-16 h-16  bg-white rounded-xl flex items-center justify-center mr-3 shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <img src={logo} alt="Logo" className="w-16 h-16 object-contain" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
               Prompt<span className="text-purple-400">Edge</span>
