@@ -69,29 +69,30 @@ const Home = () => {
             }`}
           >
             {/* Main Headline */}
-            <div className="mb-8">
+            <div className="mb-16 text-center">
               <div className="inline-flex items-center gap-2 bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 rounded-full px-4 py-2 mb-6">
                 <Sparkles className="h-4 w-4 text-purple-400" />
                 <span className="text-sm font-medium text-purple-300">
-                  AI-Powered Project Generation
+                  AI-Powered Project Generator
                 </span>
               </div>
 
-              <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
-                  Ideas That
+                  Build Smarter
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
-                  Code Themselves
+                  Projects with AI
                 </span>
               </h1>
 
               <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Generate unlimited project ideas powered by cutting-edge AI.
+                Instantly generate project ideas tailored to your tech stack,
+                skill level, and goals — all powered by advanced AI.
                 <br />
                 <span className="text-purple-400 font-semibold">
-                  Build your portfolio. Level up your skills. Ship faster.
+                  Build your dream portfolio. Learn faster. Create more.
                 </span>
               </p>
             </div>

@@ -233,26 +233,6 @@ const DiscoverProj = () => {
               Explore our curated collection of coding projects designed to
               challenge and inspire developers at every level
             </p>
-            <div className="flex items-center justify-center space-x-8 mt-8">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">
-                  {mockProjects.beginner.length +
-                    mockProjects.intermediate.length +
-                    mockProjects.advanced.length}
-                </div>
-                <div className="text-sm text-gray-400">Total Projects</div>
-              </div>
-              <div className="w-px h-8 bg-gray-700"></div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">3</div>
-                <div className="text-sm text-gray-400">Skill Levels</div>
-              </div>
-              <div className="w-px h-8 bg-gray-700"></div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">24</div>
-                <div className="text-sm text-gray-400">Unique Ideas</div>
-              </div>
-            </div>
           </div>
 
           {/* Search and Filters */}

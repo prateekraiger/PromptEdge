@@ -187,17 +187,17 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl mb-6">
               <Lightbulb className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
               AI Project Generator
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Get personalized project ideas based on your skill level,
               preferred tech stack, and domain
             </p>
           </div>
 
           {/* Main Content */}
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-full sm:max-w-7xl mx-auto">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 self-start relative">
                 <div className="relative z-10">
@@ -215,12 +215,12 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                         {skillLevels.map((level) => (
                           <button
                             key={level}
-                            onClick={() => setSkillLevel(level)}
-                            className={`p-3 rounded-xl border-2 transition-all duration-200 font-medium capitalize ${
+                            className={`px-4 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 ${
                               skillLevel === level
-                                ? "border-purple-500 bg-purple-500/20 text-white"
-                                : "border-gray-700 hover:border-purple-500 text-gray-300 hover:bg-purple-500/10"
+                                ? "bg-purple-500 text-white"
+                                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                             }`}
+                            onClick={() => setSkillLevel(level)}
                           >
                             {level}
                           </button>
