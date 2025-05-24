@@ -97,7 +97,7 @@ const Home = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <button
                 onClick={() => (window.location.href = "/idea-generator")}
                 className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
@@ -115,8 +115,8 @@ const Home = () => {
                 className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:shadow-xl"
               >
                 <div className="flex items-center gap-3">
-                  <Play className="h-6 w-6" />
-                  <span className="text-lg">Watch Demo</span>
+                  <Code className="h-6 w-6" />
+                  <span className="text-lg">Discover Projects</span>
                 </div>
               </button>
             </div>

@@ -8,7 +8,8 @@ import {
   RefreshCw,
   AlertCircle,
   CheckCircle,
-} from "lucide-react"; // Added Lightbulb back
+  Share2,
+} from "lucide-react"; // Added Lightbulb back and Share2 icon
 
 import { generateProjectIdea } from "../lib/aiService";
 
@@ -146,6 +147,35 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
       .catch(() => {
         showToast("error", "Failed to copy to clipboard");
       });
+  };
+
+  const handleShare = async () => {
+    if (!generatedIdea) return;
+    const ideaText = `
+Project Title: ${generatedIdea.title}
+Description: ${generatedIdea.description}
+Key Features: ${generatedIdea.keyFeatures.join(", ")}
+Suggested Tech Stack: ${generatedIdea.suggestedTechStack.join(", ")}
+Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
+    `;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: generatedIdea.title,
+          text: ideaText.trim(),
+        });
+        showToast("success", "Project idea shared successfully!");
+      } else {
+        // Fallback to copying to clipboard if Web Share API is not available
+        await navigator.clipboard.writeText(ideaText.trim());
+        showToast("success", "Project idea copied to clipboard!");
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        showToast("error", "Failed to share project idea");
+      }
+    }
   };
 
   return (
@@ -291,18 +321,25 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                   {generatedIdea && (
                     <div className="flex gap-3">
                       <button
-                        onClick={handleCopyToClipboard}
-                        className="p-2.5 text-gray-400 hover:text-purple-400 hover:bg-purple-500/10 rounded-xl transition-all duration-300 hover:scale-105"
-                        title="Copy to clipboard"
-                      >
-                        <Copy className="h-5 w-5" />
-                      </button>
-                      <button
                         onClick={handleGenerateIdea}
                         className="p-2.5 text-gray-400 hover:text-blue-400 hover:bg-blue-500/10 rounded-xl transition-all duration-300 hover:scale-105"
                         title="Regenerate"
                       >
                         <RefreshCw className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={handleShare}
+                        className="p-2.5 text-gray-400 hover:text-green-400 hover:bg-green-500/10 rounded-xl transition-all duration-300 hover:scale-105"
+                        title="Share"
+                      >
+                        <Share2 className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={handleCopyToClipboard}
+                        className="p-2.5 text-gray-400 hover:text-purple-400 hover:bg-purple-500/10 rounded-xl transition-all duration-300 hover:scale-105"
+                        title="Copy to clipboard"
+                      >
+                        <Copy className="h-5 w-5" />
                       </button>
                     </div>
                   )}

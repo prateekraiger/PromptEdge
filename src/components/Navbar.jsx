@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { Menu, X, User } from "lucide-react";
-import logo from "../assets/logo.png"; // Use the new blue logo
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/clerk-react";
+import logo from "../assets/logo.png";
+import { useAuth, useUser, SignInButton, UserButton } from "@clerk/clerk-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isSignedIn } = useAuth();
+  const { user } = useUser();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -19,6 +16,64 @@ const Navbar = () => {
     { name: "Discover", href: "/discover" },
     { name: "Idea Generator", href: "/idea-generator" },
   ];
+
+  const renderAuthButton = () => {
+    if (isSignedIn) {
+      return (
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox: "w-10 h-10 rounded-full",
+              userButtonPopoverCard: "bg-white border border-gray-200",
+              userButtonPopoverActionButton:
+                "text-black hover:text-gray-800 hover:bg-gray-100",
+              userButtonPopoverFooter: "border-t border-gray-200",
+            },
+          }}
+        />
+      );
+    }
+
+    return (
+      <SignInButton mode="modal">
+        <button className="flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+          <User className="w-5 h-5" />
+          <span>Get Started</span>
+        </button>
+      </SignInButton>
+    );
+  };
+
+  const renderMobileAuthButton = () => {
+    if (isSignedIn) {
+      return (
+        <div className="flex justify-center mt-3">
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                avatarBox: "w-10 h-10 rounded-full",
+                userButtonPopoverCard: "bg-white border border-gray-200",
+                userButtonPopoverActionButton:
+                  "text-black hover:text-gray-800 hover:bg-gray-100",
+                userButtonPopoverFooter: "border-t border-gray-200",
+              },
+            }}
+          />
+        </div>
+      );
+    }
+
+    return (
+      <SignInButton mode="modal">
+        <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+          <User className="w-5 h-5" />
+          <span>Get Started</span>
+        </button>
+      </SignInButton>
+    );
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-lg border-b border-white/10 shadow-sm">
@@ -51,31 +106,7 @@ const Navbar = () => {
             ))}
 
             {/* Auth Button */}
-            <div className="ml-6">
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <button className="flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
-                    <User className="w-5 h-5" />
-                    <span>Get Started</span>
-                  </button>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
-                <UserButton
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: {
-                      avatarBox: "w-10 h-10 rounded-lg",
-                      userButtonPopoverCard:
-                        "bg-gray-800 border border-white/10",
-                      userButtonPopoverActionButton:
-                        "text-gray-300 hover:text-white hover:bg-gray-700/50",
-                      userButtonPopoverFooter: "border-t border-white/10",
-                    },
-                  }}
-                />
-              </SignedIn>
-            </div>
+            <div className="ml-6">{renderAuthButton()}</div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -109,31 +140,7 @@ const Navbar = () => {
               </a>
             ))}
             <div className="pt-4 border-t border-white/10">
-              <SignedOut>
-                <SignInButton mode="modal">
-                  <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
-                    <User className="w-5 h-5" />
-                    <span>Get Started</span>
-                  </button>
-                </SignInButton>
-              </SignedOut>
-              <SignedIn>
-                <div className="flex justify-center mt-3">
-                  <UserButton
-                    afterSignOutUrl="/"
-                    appearance={{
-                      elements: {
-                        avatarBox: "w-10 h-10 rounded-lg",
-                        userButtonPopoverCard:
-                          "bg-gray-800 border border-white/10",
-                        userButtonPopoverActionButton:
-                          "text-gray-300 hover:text-white hover:bg-gray-700/50",
-                        userButtonPopoverFooter: "border-t border-white/10",
-                      },
-                    }}
-                  />
-                </div>
-              </SignedIn>
+              {renderMobileAuthButton()}
             </div>
           </div>
         </div>

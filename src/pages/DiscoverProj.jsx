@@ -223,8 +223,7 @@ const DiscoverProj = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-2xl mb-6 transform hover:scale-105 transition-all duration-300">
               <div className="flex items-center justify-center gap-2">
-                <Code className="w-8 h-8 text-white" />
-                <Trophy className="w-8 h-8 text-white" />
+                <Code className="w-10 h-10 text-white" />
               </div>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
