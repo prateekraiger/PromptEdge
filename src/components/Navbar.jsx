@@ -37,7 +37,7 @@ const Navbar = () => {
 
     return (
       <SignInButton mode="modal">
-        <button className="flex items-center space-x-2 px-4 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+        <button className="flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-base font-medium rounded-full shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105">
           <User className="w-4 h-4" />
           <span>Get Started</span>
         </button>
@@ -67,7 +67,7 @@ const Navbar = () => {
 
     return (
       <SignInButton mode="modal">
-        <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-medium rounded-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+        <button className="w-full flex items-center justify-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-base font-medium rounded-full shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 hover:scale-105">
           <User className="w-4 h-4" />
           <span>Get Started</span>
         </button>
@@ -87,7 +87,7 @@ const Navbar = () => {
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-2 shadow-lg group-hover:shadow-xl transition-all duration-300">
               <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
             </div>
-            <span className="text-lg font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
               Prompt<span className="text-purple-400">Edge</span>
             </span>
           </a>
@@ -98,7 +98,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="relative px-3 py-1.5 text-sm text-gray-300 font-medium transition-all duration-300 hover:text-purple-400 group"
+                className="relative px-3 py-1.5 text-base text-gray-300 font-medium transition-all duration-300 hover:text-purple-400 group"
               >
                 {item.name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
@@ -133,7 +133,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 text-sm text-gray-300 font-medium rounded-lg hover:bg-white/5 hover:text-purple-400 transition-all duration-200"
+                className="block px-3 py-2 text-base text-gray-300 font-medium rounded-lg hover:bg-white/5 hover:text-purple-400 transition-all duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
