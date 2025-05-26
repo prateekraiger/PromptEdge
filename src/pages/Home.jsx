@@ -98,33 +98,35 @@ const Home = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
               <button
                 onClick={() => (window.location.href = "/idea-generator")}
-                className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative flex items-center gap-3">
-                  <Brain className="h-6 w-6" />
-                  <span className="text-lg">Generate Ideas Now</span>
+                  <Brain className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <span className="text-lg font-bold">Generate Ideas Now</span>
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </button>
 
               <button
                 onClick={() => (window.location.href = "/discover")}
-                className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:shadow-xl"
+                className="group relative bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 hover:shadow-xl hover:border-purple-500/30"
               >
-                <div className="flex items-center gap-3">
-                  <Code className="h-6 w-6" />
-                  <span className="text-lg">Discover Projects</span>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600/0 to-pink-600/0 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-1000"></div>
+                <div className="relative flex items-center gap-3">
+                  <Code className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <span className="text-lg font-bold">Discover Projects</span>
                 </div>
               </button>
             </div>
 
-            {/* Scroll Indicator */}
-            <div className="animate-bounce">
-              <ChevronDown className="h-8 w-8 mx-auto text-gray-400" />
+            {/* Scroll Indicator with improved styling */}
+            <div className="animate-bounce bg-white/5 backdrop-blur-sm rounded-full p-2 w-12 h-12 flex items-center justify-center mx-auto border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+              <ChevronDown className="h-6 w-6 text-purple-400" />
             </div>
           </div>
         </div>
@@ -134,12 +136,18 @@ const Home = () => {
       <div className="relative z-10 py-32 bg-gradient-to-b from-transparent to-gray-800/50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 rounded-full px-4 py-2 mb-6">
+              <Sparkles className="h-4 w-4 text-purple-400" />
+              <span className="text-sm font-medium text-purple-300">
+                Powerful Capabilities
+              </span>
+            </div>
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Supercharged Features
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
               Everything you need to generate, explore, and build amazing
-              projects
+              projects with AI-powered assistance
             </p>
           </div>
 
@@ -147,28 +155,31 @@ const Home = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+                className="group relative p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-white/20"
               >
+                {/* Animated gradient background */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl"
-                  style={{
-                    backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))`,
-                  }}
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}
                 ></div>
 
-                <div
-                  className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${feature.gradient} mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  {feature.icon}
+                {/* Glow effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600/0 to-pink-600/0 rounded-3xl blur opacity-0 group-hover:opacity-30 transition duration-700"></div>
+
+                <div className="relative">
+                  <div
+                    className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${feature.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+                  >
+                    {feature.icon}
+                  </div>
+
+                  <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                    {feature.description}
+                  </p>
                 </div>
-
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
-                  {feature.title}
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                  {feature.description}
-                </p>
               </div>
             ))}
           </div>
@@ -179,15 +190,27 @@ const Home = () => {
       <div className="relative z-10 py-32 bg-gradient-to-b from-gray-800/50 to-transparent">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full px-4 py-2 mb-6">
+              <Play className="h-4 w-4 text-blue-400" />
+              <span className="text-sm font-medium text-blue-300">
+                Simple Process
+              </span>
+            </div>
             <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
               Three Steps to Genius
             </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Our streamlined process makes it easy to go from idea to
+              implementation
+            </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              {/* Connection Line */}
-              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 transform -translate-y-1/2 hidden lg:block"></div>
+              {/* Connection Line with animation */}
+              <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 transform -translate-y-1/2 hidden lg:block rounded-full overflow-hidden">
+                <div className="absolute inset-0 w-1/2 bg-white/30 blur-sm animate-[pulse_2s_ease-in-out_infinite]"></div>
+              </div>
 
               <div className="grid lg:grid-cols-3 gap-16 relative">
                 {[
@@ -209,15 +232,18 @@ const Home = () => {
                 ].map((item, index) => (
                   <div key={index} className="text-center group relative">
                     <div className="relative mb-8">
-                      <div className="w-24 h-24 mx-auto bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full flex items-center justify-center text-2xl font-bold relative z-10 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-24 h-24 mx-auto bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full flex items-center justify-center text-2xl font-bold relative z-10 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-600/20">
                         {item.step}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-cyan-600 blur-sm opacity-0 group-hover:opacity-70 transition-opacity duration-500 -z-10"></div>
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300 animate-pulse"></div>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 text-white">
+                    <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
                       {item.title}
                     </h3>
-                    <p className="text-gray-400 leading-relaxed">{item.desc}</p>
+                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                      {item.desc}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -229,22 +255,28 @@ const Home = () => {
       {/* Final CTA */}
       <div className="relative z-10 py-32 text-center">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
-              Ready to Build Something Amazing?
-            </h2>
-            <p className="text-xl text-gray-400 mb-12">
-              Join thousands of developers who've accelerated their coding
-              journey
-            </p>
-            <button
-              onClick={() => (window.location.href = "/idea-generator")}
-              className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 hover:from-purple-500 hover:via-pink-500 hover:to-cyan-500 text-white font-bold py-6 px-12 rounded-2xl text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
-            >
-              <Stars className="h-6 w-6" />
-              <span>Start Creating Now</span>
-              <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform" />
-            </button>
+          <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-12 hover:bg-white/10 transition-all duration-500 shadow-xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-pink-600/5 rounded-3xl"></div>
+            <div className="relative">
+              <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
+                Ready to Build Something Amazing?
+              </h2>
+              <p className="text-xl text-gray-400 mb-12">
+                Join thousands of developers who've accelerated their coding
+                journey with AI-powered project ideas
+              </p>
+              <button
+                onClick={() => (window.location.href = "/idea-generator")}
+                className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 hover:from-purple-500 hover:via-pink-500 hover:to-cyan-500 text-white font-bold py-6 px-12 rounded-2xl text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+              >
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="relative flex items-center gap-4">
+                  <Stars className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <span>Start Creating Now</span>
+                  <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform" />
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>

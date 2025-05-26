@@ -1,6 +1,6 @@
 import React from "react";
 import { FaLinkedinIn, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
-import { Heart } from "lucide-react";
+import { Heart, Code, Coffee, ExternalLink } from "lucide-react";
 import logo from "../assets/logo.png";
 
 const socialLinks = [
@@ -26,16 +26,24 @@ const socialLinks = [
   },
 ];
 
+const quickLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Discover", href: "/discover" },
+  { name: "Generator", href: "/idea-generator" },
+];
+
 const Footer = () => {
   return (
-    <footer className="w-full border-t border-white/10 bg-gray-900 backdrop-blur-lg">
+    <footer className="w-full border-t border-white/10 bg-gray-900/90 backdrop-blur-lg">
       {/* Decorative gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-transparent to-pink-600/5 pointer-events-none" />
 
-      <div className="container mx-auto px-4 py-3">
-        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
-          {/* Branding & Copyright */}
-          <div className="flex flex-col items-center sm:items-start gap-1">
+      <div className="container mx-auto px-4 py-8">
+        {/* Main footer content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Brand section */}
+          <div className="flex flex-col items-center md:items-start gap-4">
             <a
               href="/"
               className="flex items-center group transition-all duration-300 hover:scale-105"
@@ -51,33 +59,72 @@ const Footer = () => {
                 Prompt<span className="text-purple-400">Edge</span>
               </span>
             </a>
+            <p className="text-gray-400 text-sm text-center md:text-left">
+              AI-powered project idea generator for developers looking to build
+              their next great application.
+            </p>
           </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-3">
-            {socialLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`text-gray-400 hover:scale-110 transition-all duration-300 ${link.color} p-1.5 rounded-lg hover:bg-white/5`}
-              >
-                {link.icon}
-              </a>
-            ))}
+          {/* Quick links */}
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <h3 className="text-white font-semibold text-lg">Quick Links</h3>
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
+              {quickLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm px-3 py-1 rounded-full hover:bg-white/5"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Credits */}
+          {/* Social links */}
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <h3 className="text-white font-semibold text-lg">Connect</h3>
+            <div className="flex items-center gap-3">
+              {socialLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-gray-400 hover:scale-110 transition-all duration-300 ${link.color} p-2 rounded-lg hover:bg-white/5 flex items-center justify-center`}
+                  aria-label={`Visit ${link.href}`}
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-white/10 gap-4">
           <div className="flex items-center gap-1 text-xs text-gray-400">
-            <span>Built by</span>
+            <span>Built with</span>
+            <Heart className="h-3 w-3 text-red-400 mx-1" />
+            <span>by</span>
             <a
               href="https://pratik-me.onrender.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-purple-400 hover:text-purple-300 transition-colors"
+              className="font-medium text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1 group"
             >
               Pratik
+              <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
+
+          <div className="flex items-center gap-4 text-xs text-gray-500">
+            <span>© {new Date().getFullYear()} PromptEdge</span>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-gray-300 transition-colors">
+              Terms
             </a>
           </div>
         </div>
