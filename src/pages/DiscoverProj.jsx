@@ -1,15 +1,16 @@
 import React, { useState, useMemo } from "react";
 import {
   Search,
-  Star,
-  Clock,
   Code,
-  Lightbulb,
-  Zap,
-  Trophy,
-  TrendingUp,
+  X,
+  ExternalLink,
+  Github,
+  Layers,
+  Server,
+  Cpu,
+  Database,
 } from "lucide-react";
-import { mockProjects } from "../constants/projectData";
+import codingProjects from "../constants/codingProjects";
 
 const SearchBar = ({ onSearch, searchValue }) => {
   return (
@@ -28,181 +29,139 @@ const SearchBar = ({ onSearch, searchValue }) => {
   );
 };
 
-const ProjectTable = ({ projects, tier, tierColor, tierIcon }) => {
-  const getDifficultyStars = (difficulty) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`w-3 h-3 ${
-          i < Math.ceil(difficulty / 2)
-            ? "text-yellow-400 fill-current"
-            : "text-slate-400"
-        }`}
-      />
-    ));
-  };
+const ProjectCard = ({ project, onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 cursor-pointer hover:bg-white/10 transition-all duration-300 group"
+    >
+      <h3 className="text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300 mb-3">
+        {project.title}
+      </h3>
+      <p className="text-slate-300 text-sm line-clamp-3 mb-4">
+        {project.overview.objective}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {Object.entries(project.techStack).map(([key, value], i) => (
+          <span
+            key={i}
+            className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
+          >
+            {key}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ProjectDetailModal = ({ project, onClose }) => {
+  if (!project) return null;
 
   return (
-    <section className="mb-16">
-      <div className="flex items-center mb-6">
-        <div
-          className={`flex items-center justify-center w-12 h-12 ${tierColor} rounded-xl mr-4`}
-        >
-          {tierIcon}
-        </div>
-        <div>
-          <h2 className="text-3xl font-bold text-white">{tier} Projects</h2>
-          <p className="text-slate-400">{projects.length} projects available</p>
-        </div>
-      </div>
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="bg-gray-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-6">
+            <h2 className="text-3xl font-bold text-white">{project.title}</h2>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/10 rounded-full transition-colors duration-300"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+          </div>
 
-      <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-white/10 bg-white/5">
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 w-16">
-                  #
-                </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 min-w-[200px]">
-                  Project Name
-                </th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-slate-300 min-w-[300px]">
-                  Description
-                </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-32">
-                  Difficulty
-                </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-28">
-                  Time
-                </th>
-                <th className="px-6 py-4 text-center text-sm font-semibold text-slate-300 w-40">
-                  Tags
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {projects.map((project, index) => (
-                <tr
-                  key={index}
-                  className="border-b border-white/5 hover:bg-white/10 transition-all duration-300 group"
-                >
-                  <td className="px-6 py-4">
-                    <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-bold text-sm">
-                      {index + 1}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="font-semibold text-white group-hover:text-purple-300 transition-colors duration-300">
-                      {project.name}
-                    </div>
-                    <div
-                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mt-1 ${tierColor.replace(
-                        "bg-gradient-to-r",
-                        "bg-gradient-to-r"
-                      )} text-white`}
-                    >
-                      {tier}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <p className="text-slate-300 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <div className="flex items-center justify-center space-x-1 mb-1">
-                      {getDifficultyStars(project.difficulty)}
-                    </div>
-                    <div className="text-xs text-slate-400">
-                      {project.difficulty}/10
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <div className="flex items-center justify-center mb-1">
-                      <Clock className="w-4 h-4 text-blue-400 mr-1" />
-                    </div>
-                    <div className="text-sm font-medium text-white">
-                      {project.estimatedTime}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-center">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {project.tags && project.tags.length > 0 ? (
-                        project.tags.map((tag, i) => (
-                          <span
-                            key={i}
-                            className="bg-purple-600/70 text-white text-xs px-2 py-1 rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))
-                      ) : (
-                        <span className="text-slate-400 text-xs">No tags</span>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Overview
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-sm font-medium text-slate-400 mb-1">
+                    Objective
+                  </h4>
+                  <p className="text-slate-300">{project.overview.objective}</p>
+                </div>
+                <div>
+                  <h4 className="text-sm font-medium text-slate-400 mb-1">
+                    Problem Solved
+                  </h4>
+                  <p className="text-slate-300">
+                    {project.overview.problemSolved}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">
+                Tech Stack
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white/5 rounded-xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Layers className="w-5 h-5 text-purple-400" />
+                    <h4 className="text-sm font-medium text-slate-400">
+                      Frontend
+                    </h4>
+                  </div>
+                  <p className="text-white">{project.techStack.frontend}</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Server className="w-5 h-5 text-blue-400" />
+                    <h4 className="text-sm font-medium text-slate-400">
+                      Backend
+                    </h4>
+                  </div>
+                  <p className="text-white">{project.techStack.backend}</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Cpu className="w-5 h-5 text-green-400" />
+                    <h4 className="text-sm font-medium text-slate-400">
+                      AI Models
+                    </h4>
+                  </div>
+                  <p className="text-white">{project.techStack.aiModels}</p>
+                </div>
+                <div className="bg-white/5 rounded-xl p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Database className="w-5 h-5 text-yellow-400" />
+                    <h4 className="text-sm font-medium text-slate-400">
+                      DevOps
+                    </h4>
+                  </div>
+                  <p className="text-white">{project.techStack.devOps}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
 const DiscoverProj = () => {
   const [search, setSearch] = useState("");
-  const [selectedTier, setSelectedTier] = useState("all");
-  const [sortBy, setSortBy] = useState("difficulty");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filterProjects = (projects) => {
     return projects.filter(
       (project) =>
-        project.name.toLowerCase().includes(search.toLowerCase()) ||
-        project.description.toLowerCase().includes(search.toLowerCase())
+        project.title.toLowerCase().includes(search.toLowerCase()) ||
+        project.overview.objective.toLowerCase().includes(search.toLowerCase())
     );
   };
 
-  const sortProjects = (projects) => {
-    return [...projects].sort((a, b) => {
-      switch (sortBy) {
-        case "difficulty":
-          return b.difficulty - a.difficulty;
-        case "time":
-          return b.estimatedTime - a.estimatedTime;
-        default:
-          return 0;
-      }
-    });
-  };
+  const filteredProjects = useMemo(() => {
+    return filterProjects(codingProjects);
+  }, [search]);
 
-  const filteredAndSortedProjects = useMemo(() => {
-    const filtered = {
-      beginner: sortProjects(filterProjects(mockProjects.beginner)),
-      intermediate: sortProjects(filterProjects(mockProjects.intermediate)),
-      advanced: sortProjects(filterProjects(mockProjects.advanced)),
-    };
-
-    if (selectedTier === "all") {
-      return filtered;
-    }
-
-    return {
-      beginner: selectedTier === "beginner" ? filtered.beginner : [],
-      intermediate:
-        selectedTier === "intermediate" ? filtered.intermediate : [],
-      advanced: selectedTier === "advanced" ? filtered.advanced : [],
-    };
-  }, [search, selectedTier, sortBy]);
-
-  const totalProjects =
-    filteredAndSortedProjects.beginner.length +
-    filteredAndSortedProjects.intermediate.length +
-    filteredAndSortedProjects.advanced.length;
-
-  const hasResults = totalProjects > 0;
+  const hasResults = filteredProjects.length > 0;
 
   return (
     <div className="min-h-screen text-white overflow-hidden">
@@ -219,124 +178,46 @@ const DiscoverProj = () => {
               Discover Projects
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Explore our curated collection of coding projects designed to
-              challenge and inspire developers at every level
+              Explore our curated collection of AI-powered coding projects
+              designed to challenge and inspire developers
             </p>
           </div>
 
-          {/* Search and Filters */}
+          {/* Search Bar */}
           <div className="flex flex-col lg:flex-row gap-6 mb-12">
             <div className="flex-1">
               <SearchBar onSearch={setSearch} searchValue={search} />
             </div>
-            <div className="flex gap-4">
-              <select
-                value={selectedTier}
-                onChange={(e) => setSelectedTier(e.target.value)}
-                className="px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
-              >
-                <option value="all" className="bg-gray-900">
-                  All Levels
-                </option>
-                <option value="beginner" className="bg-gray-900">
-                  Beginner
-                </option>
-                <option value="intermediate" className="bg-gray-900">
-                  Intermediate
-                </option>
-                <option value="advanced" className="bg-gray-900">
-                  Advanced
-                </option>
-              </select>
-
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent"
-              >
-                <option value="difficulty" className="bg-gray-900">
-                  Difficulty
-                </option>
-                <option value="time" className="bg-gray-900">
-                  Time Required
-                </option>
-              </select>
-            </div>
           </div>
 
-          {/* Results Summary */}
-          {search && (
-            <div className="mb-8 text-center">
-              <p className="text-gray-300">
-                {hasResults ? (
-                  <>
-                    Found{" "}
-                    <span className="font-bold text-white">
-                      {totalProjects}
-                    </span>{" "}
-                    projects matching{" "}
-                    <span className="font-bold text-purple-300">
-                      "{search}"
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    No projects found matching{" "}
-                    <span className="font-bold text-purple-300">
-                      "{search}"
-                    </span>
-                  </>
-                )}
+          {/* Projects Grid */}
+          {hasResults ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={index}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-slate-400">
+                No projects found matching your search.
               </p>
             </div>
           )}
-
-          {!hasResults && search && (
-            <div className="text-center py-20">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/5 rounded-full mb-6">
-                <Search className="w-10 h-10 text-gray-400" />
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                No Projects Found
-              </h3>
-              <p className="text-gray-400 max-w-md mx-auto">
-                Try adjusting your search terms or filters to find the perfect
-                project for you.
-              </p>
-            </div>
-          )}
-
-          {/* Project Tables */}
-          <div className="space-y-12">
-            {filteredAndSortedProjects.beginner.length > 0 && (
-              <ProjectTable
-                projects={filteredAndSortedProjects.beginner}
-                tier="Beginner"
-                tierColor="bg-gradient-to-r from-emerald-400 to-teal-500"
-                tierIcon={<Lightbulb className="w-6 h-6 text-white" />}
-              />
-            )}
-
-            {filteredAndSortedProjects.intermediate.length > 0 && (
-              <ProjectTable
-                projects={filteredAndSortedProjects.intermediate}
-                tier="Intermediate"
-                tierColor="bg-gradient-to-r from-amber-400 to-orange-500"
-                tierIcon={<Zap className="w-6 h-6 text-white" />}
-              />
-            )}
-
-            {filteredAndSortedProjects.advanced.length > 0 && (
-              <ProjectTable
-                projects={filteredAndSortedProjects.advanced}
-                tier="Advanced"
-                tierColor="bg-gradient-to-r from-red-400 to-pink-500"
-                tierIcon={<Trophy className="w-6 h-6 text-white" />}
-              />
-            )}
-          </div>
         </div>
       </div>
+
+      {/* Project Detail Modal */}
+      {selectedProject && (
+        <ProjectDetailModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </div>
   );
 };
