@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import IdeaGenerator from "./pages/IdeaGenerator";
 import DiscoverProj from "./pages/DiscoverProj";
+import Features from "./pages/Features";
 import Loader from "./components/Loader";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <main className="pt-16 relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/features" element={<Features />} />
             <Route path="/about" element={<About />} />
             <Route path="/idea-generator" element={<IdeaGenerator />} />
             <Route path="/discover" element={<DiscoverProj />} />
