@@ -39,7 +39,7 @@ const Footer = () => {
       {/* Decorative gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="w-full max-w-full mx-auto px-4 py-8">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand section */}
@@ -48,7 +48,7 @@ const Footer = () => {
               href="/"
               className="flex items-center group transition-all duration-300 hover:scale-105"
             >
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-2 shadow-lg group-hover:shadow-xl transition-all duration-300">
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mr-2 shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <img
                   src={logo}
                   alt="Logo"
