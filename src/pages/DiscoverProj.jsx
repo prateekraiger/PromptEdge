@@ -57,7 +57,7 @@ const SearchBar = ({
   };
 
   return (
-    <div className="relative max-w-2xl w-full">
+    <div className="relative w-full max-w-full md:max-w-2xl mx-auto">
       <div className="flex gap-2">
         <div className="relative flex-1">
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
