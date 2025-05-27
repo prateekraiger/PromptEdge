@@ -91,7 +91,7 @@ const StyledWrapper = styled.div`
   }
 
   .boxes .box > div {
-    --background: #8b5cf6; /* Violet-500 */
+    --background: #3b82f6; /* Blue-500 */
     --top: auto;
     --right: auto;
     --bottom: auto;
@@ -117,18 +117,18 @@ const StyledWrapper = styled.div`
   }
 
   .boxes .box > div:nth-child(2) {
-    --background: #a78bfa; /* Violet-400 */
+    --background: #60a5fa; /* Blue-400 */
     --right: 0;
     --rotateY: 90deg;
   }
 
   .boxes .box > div:nth-child(3) {
-    --background: #c4b5fd; /* Violet-300 */
+    --background: #93c5fd; /* Blue-300 */
     --rotateX: -90deg;
   }
 
   .boxes .box > div:nth-child(4) {
-    --background: #ddd6fe; /* Violet-200 */
+    --background: #bfdbfe; /* Blue-200 */
     --top: 0;
     --left: 0;
     --translateZ: calc(var(--size) * 3 * -1);

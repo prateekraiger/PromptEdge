@@ -129,27 +129,27 @@ const About = () => {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <div className="inline-block mb-4 px-4 py-1.5 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full backdrop-blur-sm border border-purple-500/20">
-              <span className="text-sm font-medium text-purple-300">
+            <div className="inline-block mb-4 px-4 py-1.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-full backdrop-blur-sm border border-blue-500/20">
+              <span className="text-sm font-medium text-blue-300">
                 Powering the next generation of developers
               </span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
                 About
               </span>
               <br />
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent relative group">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-sky-400 bg-clip-text text-transparent relative group">
                 PromptEdge
-                <span className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></span>
+                <span className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></span>
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
               We're revolutionizing how developers discover their next project.
               Using cutting-edge AI, we transform your skills and interests into{" "}
-              <span className="text-purple-400 font-semibold relative inline-block">
+              <span className="text-blue-400 font-semibold relative inline-block">
                 personalized coding adventures
                 <svg
                   className="absolute bottom-0 left-0 w-full"
@@ -170,8 +170,8 @@ const About = () => {
                       x2="100%"
                       y2="0%"
                     >
-                      <stop offset="0%" stopColor="#a855f7" />
-                      <stop offset="100%" stopColor="#ec4899" />
+                      <stop offset="0%" stopColor="#2563eb" />
+                      <stop offset="100%" stopColor="#0891b2" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -179,20 +179,22 @@ const About = () => {
               .
             </p>
 
-            <div className="flex justify-center space-x-4 mt-12">
+            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-12">
               <a
                 href="#mission"
-                className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-300 border border-white/10 hover:border-purple-500/50 group"
+                className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
               >
-                <Heart className="h-5 w-5 text-purple-400 group-hover:scale-110 transition-transform" />
-                <span>Our Mission</span>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 -z-10"></div>
+                <Heart className="h-5 w-5 text-white group-hover:text-white transition-colors duration-300" />
+                <span className="relative">Our Mission</span>
               </a>
               <a
                 href="#features"
-                className="flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-xl transition-all duration-300 border border-white/10 hover:border-purple-500/50 group"
+                className="group relative bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 border border-blue-500/20 hover:border-blue-400/30 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/15 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
               >
-                <Zap className="h-5 w-5 text-cyan-400 group-hover:scale-110 transition-transform" />
-                <span>Features</span>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-500/0 to-blue-500/0 rounded-xl blur opacity-0 group-hover:opacity-30 transition duration-1000 -z-10"></div>
+                <Zap className="h-5 w-5 text-white group-hover:text-white transition-colors duration-300" />
+                <span className="relative">Features</span>
               </a>
             </div>
           </div>
@@ -200,9 +202,9 @@ const About = () => {
       </div>
 
       {/* Mission Statement */}
-      <div
+      <section
         id="mission"
-        className="relative z-10 py-20 bg-gradient-to-b from-transparent to-gray-800/30"
+        className="py-20 bg-gradient-to-b from-gray-800/30 to-gray-900/50"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -239,22 +241,18 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Features Grid */}
-      <div
-        id="features"
-        className="relative z-10 py-32 bg-gradient-to-b from-gray-800/30 to-transparent"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-block mb-4 px-4 py-1.5 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-full backdrop-blur-sm border border-purple-500/20">
-              <span className="text-sm font-medium text-cyan-300">
-                Powered by advanced AI technology
+      <section id="features" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4 px-4 py-1.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-full backdrop-blur-sm border border-blue-500/20">
+              <span className="text-sm font-medium text-blue-300">
+                Core Capabilities
               </span>
             </div>
-
-            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
               Intelligent Features
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -269,7 +267,7 @@ const About = () => {
                 key={index}
                 className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl overflow-hidden"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600/10 to-cyan-600/10 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/10 to-cyan-600/10 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
 
                 <div className="relative flex items-start gap-6">
                   <div
@@ -297,23 +295,18 @@ const About = () => {
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Team Philosophy */}
-      <div className="relative z-10 py-32">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-purple-500/10 to-cyan-500/10 backdrop-blur-sm border border-white/10 rounded-3xl p-12 text-center relative overflow-hidden group hover:bg-white/5 transition-all duration-500 shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-cyan-600/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 blur opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-
-            <div className="relative">
-              <div className="flex justify-center mb-8">
-                <div className="bg-gradient-to-r from-purple-600 to-cyan-600 p-6 rounded-full shadow-lg group-hover:scale-105 transition-transform duration-300">
-                  <Coffee className="h-12 w-12 text-white animate-pulse-slow" />
-                </div>
+      <section className="py-20 bg-gradient-to-b from-gray-900/50 to-gray-800/30">
+        <div className="container mx-auto px-4">
+          <div className="group relative max-w-4xl mx-auto bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
+            <div className="absolute -inset-px bg-gradient-to-br from-blue-600/20 to-cyan-500/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 shadow-lg animate-pulse-slow group-hover:scale-110 transition-transform duration-300">
+                <Coffee className="h-8 w-8 text-white" />
               </div>
-
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
                 Built by Developers, for Developers
               </h2>
 
@@ -326,47 +319,44 @@ const About = () => {
 
               <div className="flex flex-wrap justify-center gap-6 mt-10">
                 <div className="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-xl border border-white/10 hover:bg-white/20 transition-colors duration-300">
-                  <Globe className="h-5 w-5 text-cyan-400" />
+                  <Globe className="h-5 w-5 text-blue-400" />
                   <span>Remote-First Team</span>
                 </div>
                 <div className="flex items-center gap-3 bg-white/10 px-5 py-3 rounded-xl border border-white/10 hover:bg-white/20 transition-colors duration-300">
-                  <Heart className="h-5 w-5 text-red-400" />
+                  <Heart className="h-5 w-5 text-blue-400" />
                   <span>Open Source Contributors</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Final CTA */}
-      <div className="relative z-10 py-32 text-center">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-12 hover:bg-white/10 transition-all duration-500 shadow-xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-pink-600/5 rounded-3xl"></div>
-            <div className="relative">
-              <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white via-purple-200 to-cyan-200 bg-clip-text text-transparent">
+          <div className="max-w-3xl mx-auto bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-3xl p-10 sm:p-16 shadow-2xl hover:bg-gray-700/40 transition-all duration-500 group">
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-700/10 to-gray-900/10 rounded-3xl -z-10"></div>
+            <div className="relative text-center">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
                 Ready to Transform Your Coding Journey?
               </h2>
-              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                Join thousands of developers who've accelerated their growth
-                with AI-powered project ideas
+              <p className="text-lg sm:text-xl text-gray-300 mb-10">
+                Unlock your potential with AI-driven project ideas. Start
+                building, learning, and creating today!
               </p>
-              <button
-                onClick={() => (window.location.href = "/idea-generator")}
-                className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 hover:from-purple-500 hover:via-pink-500 hover:to-cyan-500 text-white font-bold py-6 px-12 rounded-2xl text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+              <a
+                href="/idea-generator"
+                className="group/cta relative inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/30 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800/30"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative flex items-center gap-4">
-                  <Brain className="h-6 w-6 group-hover:animate-pulse-slow transition-transform duration-300" />
-                  <span>Start Generating Ideas</span>
-                  <Sparkles className="h-6 w-6 group-hover:rotate-12 group-hover:scale-110 transition-transform" />
-                </div>
-              </button>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-30 group-hover:cta:opacity-75 transition duration-1000 group-hover:cta:duration-200 -z-10"></div>
+                <Star className="h-5 w-5 text-white group-hover/cta:text-white transition-colors duration-300 group-hover/cta:animate-spin-slow" />
+                <span className="relative">Start Generating Ideas</span>
+              </a>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

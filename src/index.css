@@ -19,7 +19,7 @@
   }
 
   a {
-    @apply text-blue-600 hover:underline;
+    @apply text-blue-600 hover:text-blue-500 transition-colors duration-200;
   }
 
   code {
@@ -36,15 +36,55 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-gradient-to-b from-purple-600 to-pink-600 rounded-full;
+    @apply bg-gradient-to-b from-blue-600 to-cyan-600 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-gradient-to-b from-purple-500 to-pink-500;
+    @apply bg-gradient-to-b from-blue-500 to-cyan-500;
   }
 
   /* Selection color */
   ::selection {
-    @apply bg-purple-500/30 text-white;
+    @apply bg-blue-500/20 text-white;
   }
+}
+
+/* Custom hover effects */
+.hover-glow {
+  @apply transition-all duration-300;
+}
+
+.hover-glow:hover {
+  @apply shadow-lg shadow-blue-500/20;
+}
+
+.hover-scale {
+  @apply transition-transform duration-300;
+}
+
+.hover-scale:hover {
+  @apply scale-105;
+}
+
+.hover-gradient {
+  @apply transition-all duration-300;
+}
+
+.hover-gradient:hover {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600;
+}
+
+/* Animated background hover effect */
+.animated-bg {
+  @apply relative overflow-hidden;
+}
+
+.animated-bg::before {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-blue-600/0 via-blue-500/10 to-cyan-600/0;
+  @apply transform -translate-x-full transition-transform duration-1000;
+}
+
+.animated-bg:hover::before {
+  @apply translate-x-full;
 }

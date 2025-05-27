@@ -37,7 +37,7 @@ const Footer = () => {
   return (
     <footer className="w-full border-t border-white/10 bg-gray-900/90 backdrop-blur-lg">
       {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 via-transparent to-pink-600/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
 
       <div className="container mx-auto px-4 py-8">
         {/* Main footer content */}
@@ -55,8 +55,8 @@ const Footer = () => {
                   className="w-10 h-10 object-contain"
                 />
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
-                Prompt<span className="text-purple-400">Edge</span>
+              <span className="text-lg font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
+                Prompt<span className="text-blue-400">Edge</span>
               </span>
             </a>
             <p className="text-gray-400 text-sm text-center md:text-left">
@@ -73,7 +73,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm px-3 py-1 rounded-full hover:bg-white/5"
+                  className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm px-3 py-1 rounded-full hover:bg-white/5"
                 >
                   {link.name}
                 </a>
@@ -105,13 +105,13 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-white/10 gap-4">
           <div className="flex items-center gap-1 text-xs text-gray-400">
             <span>Built with</span>
-            <Heart className="h-3 w-3 text-red-400 mx-1" />
+            <Heart className="h-3 w-3 text-blue-400 mx-1" />
             <span>by</span>
             <a
               href="https://pratik-me.onrender.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1 group"
+              className="font-medium text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1 group"
             >
               Pratik
               <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
