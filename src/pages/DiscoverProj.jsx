@@ -9,22 +9,139 @@ import {
   Server,
   Cpu,
   Database,
+  Filter,
+  ChevronDown,
 } from "lucide-react";
 import codingProjects from "../constants/codingProjects";
 
-const SearchBar = ({ onSearch, searchValue }) => {
+const SearchBar = ({
+  onSearch,
+  searchValue,
+  onFilterChange,
+  activeFilters,
+}) => {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+
+  const techCategories = [
+    { id: "frontend", label: "Frontend", icon: <Layers className="w-4 h-4" /> },
+    { id: "backend", label: "Backend", icon: <Server className="w-4 h-4" /> },
+    { id: "aiModels", label: "AI Models", icon: <Cpu className="w-4 h-4" /> },
+    { id: "devOps", label: "DevOps", icon: <Database className="w-4 h-4" /> },
+  ];
+
+  const handleSearch = (value) => {
+    onSearch(value);
+    // Generate suggestions based on search value
+    if (value.length > 0) {
+      const searchTerms = value.toLowerCase();
+      const matches = codingProjects
+        .filter(
+          (project) =>
+            project.title.toLowerCase().includes(searchTerms) ||
+            project.overview.objective.toLowerCase().includes(searchTerms) ||
+            Object.values(project.techStack).some((tech) =>
+              tech.toLowerCase().includes(searchTerms)
+            )
+        )
+        .slice(0, 3);
+      setSuggestions(matches);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    onSearch(suggestion.title);
+    setSuggestions([]);
+  };
+
   return (
     <div className="relative max-w-2xl w-full">
-      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-        <Search className="h-5 w-5 text-blue-400" />
+      <div className="flex gap-2">
+        <div className="relative flex-1">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <Search className="h-5 w-5 text-blue-400" />
+          </div>
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => handleSearch(e.target.value)}
+            placeholder="Search projects by name, tech stack, or description..."
+            className="w-full pl-12 pr-12 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md hover:border-white/20"
+          />
+          {searchValue && (
+            <button
+              onClick={() => {
+                onSearch("");
+                setSuggestions([]);
+              }}
+              className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          )}
+        </div>
+        <button
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+          className={`px-4 py-4 rounded-2xl border transition-all duration-300 flex items-center gap-2 ${
+            isFilterOpen
+              ? "bg-blue-500/20 border-blue-500/50 text-blue-400"
+              : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/10 hover:border-white/20"
+          }`}
+        >
+          <Filter className="h-5 w-5" />
+          <span className="hidden sm:inline">Filters</span>
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-300 ${
+              isFilterOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
       </div>
-      <input
-        type="text"
-        value={searchValue}
-        onChange={(e) => onSearch(e.target.value)}
-        placeholder="Search projects by name or description..."
-        className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md hover:border-white/20"
-      />
+
+      {/* Search Suggestions */}
+      {suggestions.length > 0 && (
+        <div className="absolute z-50 w-full mt-2 bg-gray-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-xl overflow-hidden">
+          {suggestions.map((suggestion, index) => (
+            <button
+              key={index}
+              onClick={() => handleSuggestionClick(suggestion)}
+              className="w-full px-4 py-3 text-left hover:bg-white/5 transition-colors flex flex-col gap-1"
+            >
+              <span className="text-white font-medium">{suggestion.title}</span>
+              <span className="text-sm text-slate-400 line-clamp-1">
+                {suggestion.overview.objective}
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Filter Dropdown */}
+      {isFilterOpen && (
+        <div className="absolute z-50 w-full mt-2 bg-gray-900/95 backdrop-blur-md border border-white/10 rounded-xl shadow-xl p-4">
+          <h3 className="text-sm font-medium text-slate-400 mb-3">
+            Filter by Tech Stack
+          </h3>
+          <div className="grid grid-cols-2 gap-2">
+            {techCategories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => onFilterChange(category.id)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-300 ${
+                  activeFilters.includes(category.id)
+                    ? "bg-blue-500/20 text-blue-400 border border-blue-500/50"
+                    : "bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10"
+                }`}
+              >
+                {category.icon}
+                {category.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -191,18 +308,45 @@ const ProjectDetailModal = ({ project, onClose }) => {
 const DiscoverProj = () => {
   const [search, setSearch] = useState("");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activeFilters, setActiveFilters] = useState([]);
 
   const filterProjects = (projects) => {
-    return projects.filter(
-      (project) =>
+    return projects.filter((project) => {
+      // Search term filtering
+      const searchMatch =
+        search === "" ||
         project.title.toLowerCase().includes(search.toLowerCase()) ||
-        project.overview.objective.toLowerCase().includes(search.toLowerCase())
-    );
+        project.overview.objective
+          .toLowerCase()
+          .includes(search.toLowerCase()) ||
+        Object.values(project.techStack).some((tech) =>
+          tech.toLowerCase().includes(search.toLowerCase())
+        );
+
+      // Tech stack filtering
+      const filterMatch =
+        activeFilters.length === 0 ||
+        activeFilters.some((filter) =>
+          project.techStack[filter]
+            ?.toLowerCase()
+            .includes(search.toLowerCase())
+        );
+
+      return searchMatch && filterMatch;
+    });
   };
 
   const filteredProjects = useMemo(() => {
     return filterProjects(codingProjects);
-  }, [search]);
+  }, [search, activeFilters]);
+
+  const handleFilterChange = (filterId) => {
+    setActiveFilters((prev) =>
+      prev.includes(filterId)
+        ? prev.filter((id) => id !== filterId)
+        : [...prev, filterId]
+    );
+  };
 
   const hasResults = filteredProjects.length > 0;
 
@@ -229,9 +373,30 @@ const DiscoverProj = () => {
           {/* Search Bar */}
           <div className="flex flex-col lg:flex-row gap-6 mb-12">
             <div className="flex-1">
-              <SearchBar onSearch={setSearch} searchValue={search} />
+              <SearchBar
+                onSearch={setSearch}
+                searchValue={search}
+                onFilterChange={handleFilterChange}
+                activeFilters={activeFilters}
+              />
             </div>
           </div>
+
+          {/* Active Filters */}
+          {activeFilters.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-6">
+              {activeFilters.map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => handleFilterChange(filter)}
+                  className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/20 text-blue-400 rounded-full text-sm hover:bg-blue-500/30 transition-colors"
+                >
+                  {filter.charAt(0).toUpperCase() + filter.slice(1)}
+                  <X className="h-4 w-4" />
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Projects Grid */}
           {hasResults ? (
@@ -247,7 +412,7 @@ const DiscoverProj = () => {
           ) : (
             <div className="text-center py-12">
               <p className="text-xl text-slate-400">
-                No projects found matching your search.
+                No projects found matching your search criteria.
               </p>
             </div>
           )}
