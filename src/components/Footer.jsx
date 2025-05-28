@@ -41,10 +41,10 @@ const quickLinks = [
 const Footer = () => {
   return (
     <footer className="bg-gray-900/80 backdrop-blur-lg border-t border-white/10 shadow-lg mt-auto w-full">
-      <div className="w-full py-8">
-        <div className="w-full flex flex-col md:flex-row items-center gap-6 relative">
-          {/* Brand Section - Absolute Left */}
-          <div className="flex items-center gap-3 md:justify-start justify-center md:w-1/3 w-full order-1 md:order-none absolute left-0 pl-4">
+      <div className="w-full py-6 md:py-8 px-4">
+        <div className="w-full flex flex-col md:flex-row items-center md:items-stretch gap-6 md:gap-6">
+          {/* Brand Section */}
+          <div className="flex items-center gap-3 justify-center md:justify-start md:w-1/3 w-full order-1 md:mb-0 mb-4">
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
                 <img
@@ -66,12 +66,12 @@ const Footer = () => {
           </div>
 
           {/* Quick Links - Center */}
-          <div className="flex items-center justify-center gap-6 md:w-1/3 w-full order-3 md:order-none mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-6 md:w-1/3 w-full order-3 md:order-2 mb-6 md:mb-0">
             {quickLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
-                className="text-gray-300 hover:text-white text-sm font-medium transition-colors duration-200 relative group"
+                className="text-gray-300 hover:text-white text-sm font-medium transition-colors duration-200 relative group px-2 py-1"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-3/4"></span>
@@ -79,8 +79,8 @@ const Footer = () => {
             ))}
           </div>
 
-          {/* Social Icons - Extreme Right */}
-          <div className="flex items-center justify-end gap-4 md:w-1/3 w-full order-2 md:order-none absolute right-0 pr-4">
+          {/* Social Icons */}
+          <div className="flex items-center justify-center md:justify-end gap-4 md:w-1/3 w-full order-2 md:order-3 mb-6 md:mb-0">
             {socialLinks.map((link) => (
               <a
                 key={link.href}
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Bottom Bar */}
-        <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-center text-xs text-gray-500">
+        <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-white/10 flex items-center justify-center text-xs text-gray-500">
           <span>© {new Date().getFullYear()} PromptEdge</span>
         </div>
       </div>
