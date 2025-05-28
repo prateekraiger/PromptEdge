@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Code, Users, BookOpen, Rocket, Heart, Star } from "lucide-react";
+import {
+  Code,
+  Users,
+  BookOpen,
+  Rocket,
+  Heart,
+  Star,
+  Brain,
+} from "lucide-react";
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -44,10 +52,19 @@ const About = () => {
                 : "opacity-0 translate-y-10"
             }`}
           >
-            <div className="inline-block mb-4 px-4 py-1.5 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-full backdrop-blur-sm border border-blue-500/20">
-              <span className="text-sm font-medium text-blue-300">
-                Powering the next generation of developers
-              </span>
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-blue-500/20 rounded-full blur-md animate-pulse"></div>
+                <Brain className="h-8 w-8 text-blue-400 relative" />
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-2 bg-cyan-500/20 rounded-full blur-md animate-pulse"></div>
+                <Code className="h-8 w-8 text-cyan-400 relative" />
+              </div>
+              <div className="relative">
+                <div className="absolute -inset-2 bg-purple-500/20 rounded-full blur-md animate-pulse"></div>
+                <Rocket className="h-8 w-8 text-purple-400 relative" />
+              </div>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">

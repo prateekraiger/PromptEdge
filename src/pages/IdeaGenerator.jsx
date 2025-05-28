@@ -9,7 +9,9 @@ import {
   AlertCircle,
   CheckCircle,
   Share2,
-} from "lucide-react"; // Added Lightbulb back and Share2 icon
+  Brain,
+  ChevronDown,
+} from "lucide-react";
 
 import { generateProjectIdea } from "../lib/aiService";
 
@@ -185,11 +187,14 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
       <div className="relative z-10 pt-20">
         <div className="container mx-auto px-4 py-12">
           {/* Hero Section */}
-          <div className="text-left mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-300 to-cyan-300 bg-clip-text text-transparent mb-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 rounded-2xl mb-6 transform hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-blue-500/30">
+              <Brain className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent mb-6">
               AI Project Generator
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Get personalized project ideas based on your skill level,
               preferred tech stack, and domain
             </p>
@@ -199,11 +204,11 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
           <div className="max-w-full sm:max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left Side - Input Section */}
-              <div className="space-y-8">
-                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-blue-500/10 transition-shadow duration-300">
-                  <div className="space-y-6 mb-8">
+              <div className="w-full">
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-blue-500/10 transition-all duration-300 transform hover:-translate-y-1 h-full">
+                  <div className="space-y-6">
                     {/* Skill Level Dropdown */}
-                    <div>
+                    <div className="relative">
                       <label
                         htmlFor="skillLevel"
                         className="block text-sm font-medium text-blue-300 mb-2"
@@ -214,7 +219,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                         id="skillLevel"
                         value={skillLevel}
                         onChange={(e) => setSkillLevel(e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm hover:bg-white/15"
+                        className="w-full bg-gray-950/50 border border-gray-800 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm hover:bg-gray-900/50 appearance-none"
                       >
                         <option value="" disabled className="text-gray-500">
                           Select Skill Level
@@ -223,7 +228,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                           <option
                             key={level}
                             value={level}
-                            className="bg-gray-800 text-white"
+                            className="bg-gray-900 text-white"
                           >
                             {level}
                           </option>
@@ -232,7 +237,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                     </div>
 
                     {/* Domain Dropdown */}
-                    <div>
+                    <div className="relative">
                       <label
                         htmlFor="domain"
                         className="block text-sm font-medium text-cyan-300 mb-2"
@@ -243,7 +248,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                         id="domain"
                         value={domain}
                         onChange={(e) => setDomain(e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200 shadow-sm hover:bg-white/15"
+                        className="w-full bg-gray-950/50 border border-gray-800 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all duration-200 shadow-sm hover:bg-gray-900/50 appearance-none"
                       >
                         <option value="" disabled className="text-gray-500">
                           Select Domain
@@ -252,7 +257,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                           <option
                             key={d}
                             value={d}
-                            className="bg-gray-800 text-white"
+                            className="bg-gray-900 text-white"
                           >
                             {d}
                           </option>
@@ -261,10 +266,10 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                     </div>
 
                     {/* Tech Stack Dropdown */}
-                    <div>
+                    <div className="relative">
                       <label
                         htmlFor="techStack"
-                        className="block text-sm font-medium text-blue-300 mb-2"
+                        className="block text-sm font-medium text-purple-300 mb-2"
                       >
                         Tech Stack
                       </label>
@@ -272,114 +277,107 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                         id="techStack"
                         value={techStack}
                         onChange={(e) => setTechStack(e.target.value)}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm hover:bg-white/15"
+                        className="w-full bg-gray-950/50 border border-gray-800 rounded-xl py-3 px-4 text-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 shadow-sm hover:bg-gray-900/50 appearance-none"
                         disabled={!domain}
                       >
                         <option value="" disabled className="text-gray-500">
                           {domain ? "Select Tech Stack" : "Select Domain First"}
                         </option>
                         {domain &&
-                          domainTechStacks[domain].map((tech) => (
+                          domainTechStacks[domain]?.map((tech) => (
                             <option
                               key={tech}
                               value={tech}
-                              className="bg-gray-800 text-white"
+                              className="bg-gray-900 text-white"
                             >
                               {tech}
                             </option>
                           ))}
                       </select>
                     </div>
-                  </div>
 
-                  {/* Generate Button */}
-                  <div className="flex justify-start">
+                    {/* Generate Button */}
                     <button
                       onClick={handleGenerateIdea}
                       disabled={isLoading}
-                      className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className={`w-full py-4 px-6 rounded-xl font-medium text-white transition-all duration-300 transform hover:scale-105 ${
+                        isLoading
+                          ? "bg-blue-500/50 cursor-not-allowed"
+                          : "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500"
+                      }`}
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                      <div className="relative flex items-center gap-3">
-                        {isLoading ? (
-                          <RefreshCw className="h-5 w-5 animate-spin" />
-                        ) : (
-                          <Sparkles className="h-5 w-5" />
-                        )}
-                        <span className="text-lg">
-                          {isLoading
-                            ? "Generating..."
-                            : "Generate Project Idea"}
-                        </span>
-                      </div>
+                      {isLoading ? (
+                        <div className="flex items-center justify-center gap-2">
+                          <RefreshCw className="w-5 h-5 animate-spin" />
+                          <span>Generating...</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center gap-2">
+                          <Sparkles className="w-5 h-5" />
+                          <span>Generate Project Idea</span>
+                        </div>
+                      )}
                     </button>
                   </div>
                 </div>
-
-                {/* Error Message */}
-                {error && (
-                  <div className="p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-300 flex items-center gap-2">
-                    <AlertCircle className="h-5 w-5" />
-                    <p>{error}</p>
-                  </div>
-                )}
               </div>
 
-              {/* Right Side - Generated Idea Section */}
-              <div className="lg:sticky lg:top-24">
-                <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-blue-500/10 transition-shadow duration-300 min-h-[600px]">
-                  {/* Orb Component */}
-                  <div className="absolute inset-0 overflow-hidden rounded-2xl">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-cyan-500/10 to-blue-400/10"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-[300px] h-[300px]">
-                        <Orb />
+              {/* Right Side - Generated Idea */}
+              <div className="w-full">
+                <div className="relative bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 sm:p-8 shadow-xl transition-all duration-500 h-full">
+                  {/* Orb Background - Only show when no idea is generated */}
+                  {!generatedIdea && (
+                    <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-cyan-500/10 to-blue-400/10"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-[500px] h-[300px]">
+                          <Orb hue={31} hoverIntensity={0.5} />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
 
                   {/* Content Overlay */}
-                  <div className="relative z-10">
+                  <div className="relative z-10 h-full">
                     {generatedIdea ? (
-                      <>
-                        <div className="flex justify-between items-start mb-6">
-                          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-white via-blue-300 to-cyan-300 bg-clip-text text-transparent">
+                      <div className="space-y-6">
+                        <div className="flex justify-between items-start">
+                          <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                             {generatedIdea.title}
                           </h2>
                           <div className="flex gap-2">
                             <button
                               onClick={handleCopyToClipboard}
-                              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 hover:scale-110 transform"
+                              className="p-2 text-gray-400 hover:text-white transition-colors"
                               title="Copy to clipboard"
                             >
-                              <Copy className="h-5 w-5 text-blue-400" />
+                              <Copy className="w-5 h-5" />
                             </button>
                             <button
                               onClick={handleShare}
-                              className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors duration-200 hover:scale-110 transform"
-                              title="Share project idea"
+                              className="p-2 text-gray-400 hover:text-white transition-colors"
+                              title="Share"
                             >
-                              <Share2 className="h-5 w-5 text-blue-400" />
+                              <Share2 className="w-5 h-5" />
                             </button>
                           </div>
                         </div>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4">
                           <div>
-                            <h3 className="text-lg font-semibold text-blue-300 mb-2">
+                            <h3 className="text-sm font-medium text-blue-300 mb-2">
                               Description
                             </h3>
-                            <p className="text-gray-300 leading-relaxed selection:bg-blue-500/20 selection:text-white">
+                            <p className="text-gray-200 leading-relaxed">
                               {generatedIdea.description}
                             </p>
                           </div>
 
                           <div>
-                            <h3 className="text-lg font-semibold text-blue-300 mb-2">
+                            <h3 className="text-sm font-medium text-cyan-300 mb-2">
                               Key Features
                             </h3>
-                            <ul className="list-disc list-inside space-y-2 text-gray-300 selection:bg-blue-500/20 selection:text-white">
+                            <ul className="list-disc list-inside space-y-1 text-gray-200">
                               {generatedIdea.keyFeatures.map(
                                 (feature, index) => (
                                   <li key={index}>{feature}</li>
@@ -389,7 +387,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                           </div>
 
                           <div>
-                            <h3 className="text-lg font-semibold text-blue-300 mb-2">
+                            <h3 className="text-sm font-medium text-purple-300 mb-2">
                               Suggested Tech Stack
                             </h3>
                             <div className="flex flex-wrap gap-2">
@@ -397,7 +395,7 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                                 (tech, index) => (
                                   <span
                                     key={index}
-                                    className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm hover:bg-blue-500/30 transition-colors duration-200"
+                                    className="px-3 py-1 bg-purple-500/30 text-purple-200 rounded-full text-sm"
                                   >
                                     {tech}
                                   </span>
@@ -407,22 +405,24 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
                           </div>
 
                           <div>
-                            <h3 className="text-lg font-semibold text-blue-300 mb-2">
+                            <h3 className="text-sm font-medium text-green-300 mb-2">
                               Estimated Difficulty
                             </h3>
-                            <p className="text-gray-300 selection:bg-blue-500/20 selection:text-white">
+                            <p className="text-gray-200">
                               {generatedIdea.estimatedDifficulty}
                             </p>
                           </div>
                         </div>
-                      </>
+                      </div>
                     ) : (
-                      <div className="h-full flex items-center justify-center">
-                        <div className="text-center text-gray-400">
-                          <p className="text-lg">
-                            Fill in the details and generate your project idea
-                          </p>
-                        </div>
+                      <div className="flex flex-col items-center justify-center h-full py-16 text-center">
+                        <h3 className="text-3xl font-medium text-gray-200 mb-4">
+                          No Project Idea Generated Yet
+                        </h3>
+                        <p className="text-gray-300 max-w-xl text-lg">
+                          Fill in your preferences and click "Generate Project
+                          Idea" to get started
+                        </p>
                       </div>
                     )}
                   </div>
@@ -455,11 +455,3 @@ Estimated Difficulty: ${generatedIdea.estimatedDifficulty}
 };
 
 export default IdeaGenerator;
-
-// Add this to your global CSS or a style tag
-/*
-::selection {
-  background: rgba(59, 130, 246, 0.2);
-  color: white;
-}
-*/

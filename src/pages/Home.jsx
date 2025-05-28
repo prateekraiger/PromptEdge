@@ -10,11 +10,14 @@ import {
   Star,
   ChevronDown,
   Rocket,
+  Play,
 } from "lucide-react";
 import AnimatedBg from "../components/AnimatedBg";
+import HeroVideoDialog from "../components/HeroVideoDialog";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -68,6 +71,23 @@ const Home = () => {
                   Build your dream portfolio. Learn faster. Create more.
                 </span>
               </p>
+
+              {/* Video Showcase */}
+              <div className="mt-8 mb-16 max-w-4xl mx-auto">
+                <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-blue-500/20 border border-blue-500/30 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-blue-500/30">
+                  <div className="relative pt-[56.25%] w-full bg-gray-900">
+                    <video
+                      className="absolute top-0 left-0 w-full h-full object-cover"
+                      src="https://res.cloudinary.com/dk3pg4zly/video/upload/v1748456663/cursorful-video-1748456489610_q2ti3l.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+              </div>
             </div>
 
             {/* CTA Buttons */}
@@ -87,18 +107,27 @@ const Home = () => {
 
               <button
                 onClick={() => (window.location.href = "/discover")}
-                className="group relative bg-gradient-to-r from-blue-700 to-cyan-700 hover:from-blue-600 hover:to-cyan-600 border border-blue-500/30 hover:border-blue-400/50 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/15"
+                className="group relative bg-gradient-to-r from-sky-600 to-teal-600 hover:from-sky-500 hover:to-teal-500 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-sky-500/25"
               >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600/0 to-cyan-600/0 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-1000"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-sky-500 to-teal-500 rounded-2xl blur opacity-30 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                 <div className="relative flex items-center gap-3">
-                  <Code className="h-6 w-6 text-white transition-colors duration-300 group-hover:rotate-12 transition-transform duration-300" />
+                  <Sparkles className="h-6 w-6 text-white transition-colors duration-300 group-hover:rotate-12 transition-transform duration-300" />
                   <span className="text-lg font-bold">Discover Projects</span>
+                  <ArrowRight className="h-5 w-5 text-white transition-colors duration-300 group-hover:translate-x-1 transition-transform" />
                 </div>
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Video Dialog */}
+      <HeroVideoDialog
+        isOpen={isVideoOpen}
+        onClose={() => setIsVideoOpen(false)}
+        videoUrl="https://res.cloudinary.com/dk3pg4zly/video/upload/v1748456663/cursorful-video-1748456489610_q2ti3l.mp4"
+      />
 
       {/* Features Section */}
       <div className="relative z-10 py-20">

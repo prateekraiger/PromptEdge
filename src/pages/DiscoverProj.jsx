@@ -63,13 +63,18 @@ const SearchBar = ({
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-blue-400" />
           </div>
-          <input
-            type="text"
-            value={searchValue}
-            onChange={(e) => handleSearch(e.target.value)}
-            placeholder="Search projects by name, tech stack, or description..."
-            className="w-full pl-12 pr-12 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 shadow-sm hover:shadow-md hover:border-white/20"
-          />
+          <div className="relative">
+            <div className="absolute top-0 flex w-full justify-center">
+              <div className="h-[1px] animate-border-width rounded-full bg-gradient-to-r from-[rgba(17,17,17,0)] via-blue-500 to-[rgba(17,17,17,0)] transition-all duration-1000" />
+            </div>
+            <input
+              type="text"
+              value={searchValue}
+              onChange={(e) => handleSearch(e.target.value)}
+              placeholder="Search projects by name, tech stack, or description..."
+              className="w-full pl-12 pr-12 py-4 bg-gray-950/50 border border-gray-800 rounded-2xl text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-1 focus:ring-offset-gray-950 transition-all duration-300 shadow-sm hover:shadow-md hover:border-gray-700"
+            />
+          </div>
           {searchValue && (
             <button
               onClick={() => {
