@@ -1,152 +1,104 @@
 import React from "react";
 import { FaLinkedinIn, FaGithub, FaTwitter, FaInstagram } from "react-icons/fa";
-import { Heart, Code, Coffee, ExternalLink } from "lucide-react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const socialLinks = [
   {
     href: "https://www.linkedin.com/in/pratik-r1104/",
-    icon: <FaLinkedinIn className="w-4 h-4" />,
-    color: "hover:text-blue-400",
+    icon: <FaLinkedinIn className="w-5 h-5" />,
+    color: "hover:text-blue-500",
     label: "LinkedIn",
   },
   {
     href: "https://github.com/prateekraiger",
-    icon: <FaGithub className="w-4 h-4" />,
-    color: "hover:text-gray-300",
+    icon: <FaGithub className="w-5 h-5" />,
+    color: "hover:text-gray-200",
     label: "GitHub",
   },
   {
     href: "https://x.com/mrpratik753",
-    icon: <FaTwitter className="w-4 h-4" />,
+    icon: <FaTwitter className="w-5 h-5" />,
     color: "hover:text-blue-400",
     label: "Twitter",
   },
   {
     href: "https://instagram.com/pratik.raiger",
-    icon: <FaInstagram className="w-4 h-4" />,
-    color: "hover:text-pink-400",
+    icon: <FaInstagram className="w-5 h-5" />,
+    color: "hover:text-pink-500",
     label: "Instagram",
   },
 ];
 
 const quickLinks = [
-  { name: "Home", href: "/" },
-  { name: "Features", href: "/features" },
-  { name: "About", href: "/about" },
-  { name: "Discover", href: "/discover" },
-  { name: "Generator", href: "/idea-generator" },
+  { name: "Home", path: "/" },
+  { name: "Features", path: "/features" },
+  { name: "About", path: "/about" },
+  { name: "Discover", path: "/discover" },
+  { name: "Generator", path: "/idea-generator" },
 ];
 
 const Footer = () => {
   return (
-    <footer className="relative w-full border-t border-white/10 bg-gradient-to-b from-gray-900/95 to-gray-900 backdrop-blur-lg">
-      {/* Decorative gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
-
-      {/* Glow effect */}
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-500/10 to-transparent opacity-50 blur-3xl pointer-events-none" />
-
-      <div className="relative w-full max-w-7xl mx-auto px-4 py-16">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
-          {/* Brand section */}
-          <div className="flex flex-col items-center md:items-start gap-8">
-            <a
-              href="/"
-              className="group flex items-center transition-all duration-300 hover:scale-105"
-            >
-              <div className="relative w-14 h-14 bg-white rounded-2xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-cyan-600/10 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <footer className="fixed bottom-0 left-0 right-0 z-40 bg-gray-900/80 backdrop-blur-lg border-t border-white/10 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Brand Section */}
+          <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
                 <img
                   src={logo}
-                  alt="Logo"
-                  className="relative w-12 h-12 object-contain"
+                  alt="PromptEdge Logo"
+                  className="w-8 h-8 object-contain"
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
-                  Prompt<span className="text-blue-400">Edge</span>
-                </span>
-                <span className="text-sm text-gray-400">
-                  AI Project Generator
-                </span>
+              <div>
+                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:via-cyan-400 group-hover:to-blue-500 transition-all duration-300">
+                  Prompt
+                  <span className="text-cyan-500 group-hover:text-blue-400 transition-colors duration-300">
+                    Edge
+                  </span>
+                </h1>
+                <p className="text-xs text-gray-400">AI Project Generator</p>
               </div>
-            </a>
-            <p className="text-gray-400 text-sm text-center md:text-left max-w-sm leading-relaxed">
-              AI-powered project idea generator for developers looking to build
-              their next great application.
-            </p>
+            </Link>
           </div>
 
-          {/* Quick links */}
-          <div className="flex flex-col items-center md:items-start gap-8">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Quick Links
-            </h3>
-            <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              {quickLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="group relative text-gray-400 hover:text-blue-400 transition-all duration-300 text-sm px-5 py-2.5 rounded-xl hover:bg-white/5"
-                >
-                  <span className="relative z-10">{link.name}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 to-cyan-600/0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                </a>
-              ))}
-            </div>
+          {/* Quick Links Section */}
+          <div className="flex items-center gap-6">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="text-gray-300 hover:text-white text-sm font-medium transition-colors duration-200 relative group"
+              >
+                {link.name}
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-3/4"></span>
+              </Link>
+            ))}
           </div>
 
-          {/* Social links */}
-          <div className="flex flex-col items-center md:items-start gap-8">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Connect
-            </h3>
-            <div className="flex items-center gap-5">
-              {socialLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`group relative text-gray-400 hover:scale-110 transition-all duration-300 ${link.color} p-3.5 rounded-xl hover:bg-white/5`}
-                  aria-label={`Visit ${link.label}`}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 to-cyan-600/0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                  {link.icon}
-                </a>
-              ))}
-            </div>
+          {/* Social Links Section */}
+          <div className="flex items-center gap-4">
+            {socialLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`text-gray-400 hover:scale-110 transition-transform duration-200 ${link.color} p-2`}
+                aria-label={`Visit ${link.label}`}
+              >
+                {link.icon}
+              </a>
+            ))}
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-6">
-          <div className="flex items-center gap-2 text-sm text-gray-400">
-            <span>Built with</span>
-            <Heart className="h-4 w-4 text-blue-400 animate-pulse" />
-            <span>by</span>
-            <a
-              href="https://pratik-me.onrender.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group font-medium text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1"
-            >
-              Pratik
-              <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
-          </div>
-
-          <div className="flex items-center gap-6 text-sm text-gray-500">
-            <span>© {new Date().getFullYear()} PromptEdge</span>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              Terms
-            </a>
-          </div>
+        {/* Bottom Bar */}
+        <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-center text-xs text-gray-500">
+          <span>© {new Date().getFullYear()} PromptEdge</span>
         </div>
       </div>
     </footer>

@@ -9,6 +9,7 @@ import {
   Target,
   Star,
   ChevronDown,
+  Rocket,
 } from "lucide-react";
 import AnimatedBg from "../components/AnimatedBg";
 
@@ -49,15 +50,8 @@ const Home = () => {
           >
             {/* Main Headline */}
             <div className="mb-16 text-center">
-              <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full px-4 py-2 mb-6">
-                <Sparkles className="h-4 w-4 text-blue-400" />
-                <span className="text-sm font-medium text-blue-300">
-                  AI-Powered Project Generator
-                </span>
-              </div>
-
               <h1 className="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
-                <span className="bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent animate-gradient">
                   Build Smarter
                 </span>
                 <br />
@@ -112,12 +106,6 @@ const Home = () => {
           <div className="max-w-6xl mx-auto">
             {/* Section Header */}
             <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 rounded-full px-4 py-2 mb-6">
-                <Star className="h-4 w-4 text-blue-400" />
-                <span className="text-sm font-medium text-blue-300">
-                  Key Features
-                </span>
-              </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Why Choose Our Platform
               </h2>
@@ -128,7 +116,7 @@ const Home = () => {
 
             <div className="grid md:grid-cols-3 gap-8">
               {/* AI-Powered Generation */}
-              <div className="group bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300">
+              <div className="group bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
                 <div className="flex flex-col items-center text-center">
                   <div className="p-4 bg-blue-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Cpu className="h-12 w-12 text-blue-400" />
@@ -144,7 +132,7 @@ const Home = () => {
               </div>
 
               {/* Instant Results */}
-              <div className="group bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300">
+              <div className="group bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
                 <div className="flex flex-col items-center text-center">
                   <div className="p-4 bg-purple-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Zap className="h-12 w-12 text-purple-400" />
@@ -160,7 +148,7 @@ const Home = () => {
               </div>
 
               {/* Skill-Based Matching */}
-              <div className="group bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300">
+              <div className="group bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10">
                 <div className="flex flex-col items-center text-center">
                   <div className="p-4 bg-green-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
                     <Target className="h-12 w-12 text-green-400" />
@@ -171,6 +159,88 @@ const Home = () => {
                   <p className="text-lg text-gray-300 leading-relaxed">
                     Projects are matched to your skill level, ensuring the
                     perfect learning curve.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* How It Works Section */}
+      <div className="relative z-10 py-20 bg-gradient-to-b from-gray-900/50 to-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                How It Works
+              </h2>
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                Get started in just a few simple steps
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-4 gap-8">
+              {/* Step 1 */}
+              <div className="group bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
+                <div className="flex flex-col items-center text-center">
+                  <div className="p-4 bg-blue-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl font-bold text-blue-400">1</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Enter Your Skills
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    Tell us about your technical expertise and experience level
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="group bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
+                <div className="flex flex-col items-center text-center">
+                  <div className="p-4 bg-purple-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl font-bold text-purple-400">
+                      2
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Set Preferences
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    Choose your preferred tech stack and project complexity
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="group bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10">
+                <div className="flex flex-col items-center text-center">
+                  <div className="p-4 bg-green-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl font-bold text-green-400">3</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Generate Ideas
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    Let our AI create personalized project suggestions
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="group bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/10">
+                <div className="flex flex-col items-center text-center">
+                  <div className="p-4 bg-yellow-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <span className="text-3xl font-bold text-yellow-400">
+                      4
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    Start Building
+                  </h3>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    Begin your project with detailed guidelines and resources
                   </p>
                 </div>
               </div>

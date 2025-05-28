@@ -92,12 +92,17 @@ const Navbar = () => {
                 className="w-8 h-8 sm:w-10 sm:h-10 object-contain p-1"
               />
             </div>
-            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:via-cyan-400 group-hover:to-blue-500 transition-all duration-300">
-              Prompt
-              <span className="text-cyan-500 group-hover:text-blue-400 transition-colors duration-300">
-                Edge
+            <div className="flex flex-col">
+              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-500 group-hover:via-cyan-400 group-hover:to-blue-500 transition-all duration-300">
+                Prompt
+                <span className="text-cyan-500 group-hover:text-blue-400 transition-colors duration-300">
+                  Edge
+                </span>
               </span>
-            </span>
+              <span className="text-xs text-gray-400">
+                AI Project Generator
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation & Auth Button Container */}
