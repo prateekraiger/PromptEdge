@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Code,
   Brain,
@@ -14,10 +14,12 @@ import {
 } from "lucide-react";
 import AnimatedBg from "../components/AnimatedBg";
 import HeroVideoDialog from "../components/HeroVideoDialog";
+import { DynamicArrow } from "../components/ui/DynamicArrow";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const targetButtonRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -29,31 +31,17 @@ const Home = () => {
 
       {/* Hero Section */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Gradient Orbs */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float-delayed"></div>
-          <div className="absolute top-1/3 right-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-float-slow"></div>
-
-          {/* Grid Pattern */}
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djJoLTJ2LTJoMnptMC00aDJ2MmgtMnYtMnptLTQgMHYyaC0ydi0yaDJ6bTIgMGgydjJoLTJ2LTJ6bS02IDBoMnYyaC0ydi0yem0yLTRoMnYyaC0ydi0yem0yIDBIMzZ2Mmgtc3YtMnptMC00aDJ2MmgtMnYtMnptMiAwaDJ2MmgtMnYtMnptMi00aDJ2MmgtMnYtMnptLTQgMGgydjJoLTJ2LTJ6bTIgMGgydjJoLTJ2LTJ6bTIgMGgydjJoLTJ2LTJ6bS0yLTRoMnYyaC0ydi0yem0yIDBIMzZ2Mmgtc3YtMnptLTQgMGgydjJoLTJ2LTJ6bS0yIDBIMzB2Mmgtc3YtMnptLTQgNGgydjJoLTJ2LTJ6bTAgNGgydjJoLTJ2LTJ6bTQgMGgydjJoLTJ2LTJ6bTQgMGgydjJoLTJ2LTJ6bTIgMGgydjJoLTJ2LTJ6bS0yIDRoMnYyaC0ydi0yem0yIDBIMzZ2Mmgtc3YtMnptLTQgMGgydjJoLTJ2LTJ6bS0yIDBIMzB2Mmgtc3YtMnptLTIgMGgydjJoLTJ2LTJ6bS00IDBoMnYyaC0ydi0yem0wIDRoMnYyaC0ydi0yem00IDBoMnYyaC0ydi0yeiIvPjwvZz48L2c+PC9zdmc+')] opacity-20"></div>
-
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/50 to-gray-900/80"></div>
-        </div>
-
-        <div className="container mx-auto px-4 py-12 relative z-10">
+        <div className="container mx-auto px-4 py-8 relative z-10">
           <div
-            className={`max-w-6xl mx-auto text-center transition-all duration-1500 ${
+            className={`max-w-full mx-auto text-center transition-all duration-1500 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-10"
             }`}
           >
             {/* Main Headline */}
-            <div className="mb-16 text-center">
-              <h1 className="text-6xl md:text-8xl font-extrabold mb-6 leading-tight">
+            <div className="mb-12 text-center">
+              <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
                 <span className="bg-gradient-to-r from-white via-blue-200 to-cyan-200 bg-clip-text text-transparent animate-gradient">
                   Build Smarter
                 </span>
@@ -63,7 +51,7 @@ const Home = () => {
                 </span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
                 Instantly generate project ideas tailored to your tech stack,
                 skill level, and goals — all powered by advanced AI.
                 <br />
@@ -73,7 +61,7 @@ const Home = () => {
               </p>
 
               {/* Video Showcase */}
-              <div className="mt-8 mb-16 max-w-4xl mx-auto">
+              <div className="mt-6 mb-12 max-w-4xl mx-auto">
                 <div className="relative overflow-hidden rounded-2xl shadow-2xl shadow-blue-500/20 border border-blue-500/30 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-blue-500/30">
                   <div className="relative pt-[56.25%] w-full bg-gray-900">
                     <video
@@ -93,6 +81,7 @@ const Home = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
+                ref={targetButtonRef}
                 onClick={() => (window.location.href = "/idea-generator")}
                 className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-5 px-10 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
               >
@@ -122,6 +111,9 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Dynamic Arrow Effect */}
+      <DynamicArrow targetRef={targetButtonRef} />
+
       {/* Video Dialog */}
       <HeroVideoDialog
         isOpen={isVideoOpen}
@@ -130,12 +122,12 @@ const Home = () => {
       />
 
       {/* Features Section */}
-      <div className="relative z-10 py-20">
+      <div className="relative z-10 py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-full mx-auto">
             {/* Section Header */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Why Choose Our Platform
               </h2>
               <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -197,11 +189,11 @@ const Home = () => {
       </div>
 
       {/* How It Works Section */}
-      <div className="relative z-10 py-20 bg-gradient-to-b from-gray-900/50 to-gray-900">
+      <div className="relative z-10 py-16 bg-gradient-to-b from-gray-900/50 to-gray-900">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <div className="max-w-full mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 How It Works
               </h2>
               <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -209,66 +201,66 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-4 gap-6">
               {/* Step 1 */}
-              <div className="group bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
+              <div className="group bg-gradient-to-br from-blue-500/10 to-cyan-500/10 backdrop-blur-sm border border-blue-500/20 rounded-3xl p-6 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="p-4 bg-blue-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-4 bg-blue-500/20 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl font-bold text-blue-400">1</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-xl font-bold text-white mb-3">
                     Enter Your Skills
                   </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                  <p className="text-base text-gray-300 leading-relaxed">
                     Tell us about your technical expertise and experience level
                   </p>
                 </div>
               </div>
 
               {/* Step 2 */}
-              <div className="group bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
+              <div className="group bg-gradient-to-br from-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-6 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="p-4 bg-purple-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-4 bg-purple-500/20 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl font-bold text-purple-400">
                       2
                     </span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-xl font-bold text-white mb-3">
                     Set Preferences
                   </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                  <p className="text-base text-gray-300 leading-relaxed">
                     Choose your preferred tech stack and project complexity
                   </p>
                 </div>
               </div>
 
               {/* Step 3 */}
-              <div className="group bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10">
+              <div className="group bg-gradient-to-br from-green-500/10 to-emerald-500/10 backdrop-blur-sm border border-green-500/20 rounded-3xl p-6 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="p-4 bg-green-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-4 bg-green-500/20 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl font-bold text-green-400">3</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-xl font-bold text-white mb-3">
                     Generate Ideas
                   </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                  <p className="text-base text-gray-300 leading-relaxed">
                     Let our AI create personalized project suggestions
                   </p>
                 </div>
               </div>
 
               {/* Step 4 */}
-              <div className="group bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-3xl p-8 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/10">
+              <div className="group bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-sm border border-yellow-500/20 rounded-3xl p-6 transform hover:scale-[1.02] transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="p-4 bg-yellow-500/20 rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="p-4 bg-yellow-500/20 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     <span className="text-3xl font-bold text-yellow-400">
                       4
                     </span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-xl font-bold text-white mb-3">
                     Start Building
                   </h3>
-                  <p className="text-lg text-gray-300 leading-relaxed">
+                  <p className="text-base text-gray-300 leading-relaxed">
                     Begin your project with detailed guidelines and resources
                   </p>
                 </div>
