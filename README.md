@@ -1,7 +1,7 @@
 # PromptEdge - AI-Powered Project Idea Generator
 
 PromptEdge is a modern web application that helps users discover and generate innovative project ideas using AI. Built with React and Vite, it features a beautiful, responsive UI with smooth animations and an intuitive user experience.
-
+[](https://res.cloudinary.com/dk3pg4zly/image/upload/v1748681776/Screenshot_2025-05-31_142439-min_luv0lz.png)
 ## 🚀 Features
 
 - **AI-Powered Idea Generation**: Get creative project suggestions tailored to your interests
